@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import { IAdvert } from '../models/advertsFixCar/adverts';
 let history = createBrowserHistory();
 
-axios.defaults.baseURL = 'https://localhost:5001/api/adverts';
+axios.defaults.baseURL = 'https://localhost:5001/api';
 
 axios.interceptors.response.use(undefined, error => {
     if (error.message === 'Network Error' && !error.response) {

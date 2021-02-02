@@ -10,17 +10,19 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
       <Segment>
         <Item.Group>
           <Item>
-            <Item.Image size='tiny' circular src='/assets/user.png' />
+           
             <Item.Content>
               <Item.Header as='a'>{ad.title}</Item.Header>
-              <Item.Description>Car fix</Item.Description>
+              <Item.Description>{ad.description}</Item.Description>
             </Item.Content>
+            <Item.Image size='tiny'  src='/assets/user.png' />
           </Item>
         </Item.Group>
       </Segment>
       <Segment>
-        <Icon name='clock' /> {format(ad.date, 'h:mm a')}
-        <Icon name='marker' /> {ad.carModel}, {ad.city}
+        <Icon name='car' />{" "} {ad.carModel}{" "} 
+        <Icon name='marker' /> {" "} {ad.city}{" "} 
+        <Icon name='time'/> {" "} {format(ad.date, 'MMMM do, yyyy')}{" "} 
       </Segment>
     </Segment.Group>
   );

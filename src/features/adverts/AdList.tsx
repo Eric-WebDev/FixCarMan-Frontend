@@ -12,7 +12,7 @@ const AdList: React.FC = () => {
       {adsByDate.map(([group, ads]) => (
         <Fragment key={group}>
           <Label size='large' color='blue'>
-            {group}
+            Filter {group}
           </Label>
           <Item.Group divided>
             {ads.map(ad => (
