@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid, Segment, Image, Container, List } from "semantic-ui-react";
-import { IUser } from "../../app/models/user";
+import { IGarage } from "../../app/models/vehicles/garage";
 import GarageList from "./GarageList";
 
 
 interface IProps {
-  garages: IUser[];
+  garages: IGarage[];
 }
 const GarageDisplay: React.FC<IProps> = ({garages}) => {
   return (

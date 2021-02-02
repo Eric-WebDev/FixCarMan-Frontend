@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import NavBar from "../../features/nav/NavBar";
-import { IUser } from "../models/user";
+import { IUser } from "../models/users/user";
 import { observer } from 'mobx-react-lite';
 import { Container } from "semantic-ui-react";
 import GarageDisplay from "../../features/garages/GarageDisplay";

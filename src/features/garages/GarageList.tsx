@@ -1,9 +1,9 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
-import { IUser } from "../../app/models/user";
+import { IGarage } from "../../app/models/vehicles/garage";
 
 interface IProps {
-  garages: IUser[];
+  garages: IGarage[];
 }
 
 const GarageList: React.FC<IProps> = ({ garages }) => {

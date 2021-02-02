@@ -1,6 +1,7 @@
 export interface IGarage{
-    garageId: number;
+    id: number;
     companyName:string;
+    profileDescription: string;
     street: string;
     city:string;
     county:string;
