@@ -11,17 +11,18 @@ export interface IAdvert {
 
 export interface IAdvertFormValues extends Partial<IAdvert> {
     time?: Date;
+    advertiser?: IAdvertiser;
 }
 
 export class AdvertFormValues implements IAdvertFormValues {
     id?: number = undefined;
-    title: string = '';
-    category: string = '';
+    title: string = 'test';
+    carModel: string = '';
     description: string = '';
     date?: Date = undefined;
     time?: Date = undefined;
     city: string = '';
-    venue: string = '';
+    advertiser?: IAdvertiser = undefined;
 
     constructor(init?: IAdvertFormValues) {
         if (init && init.date) {
@@ -32,10 +33,10 @@ export class AdvertFormValues implements IAdvertFormValues {
 }
 
 export interface IAdvertiser {
-    advertiserId: number;
-    advertiserName: string;
+    advertiserId: number ;
+    advertiserName: string ;
     email: string;
-    phoneNumber: string;
+    phoneNumber: string ;
 }
 export interface IPhoto {
     id: string;

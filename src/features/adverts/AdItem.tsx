@@ -9,8 +9,7 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
     <Segment.Group>
       <Segment>
         <Item.Group>
-          <Item>
-           
+          <Item>          
             <Item.Content>
               <Item.Header as='a'>{ad.title}</Item.Header>
               <Item.Meta >

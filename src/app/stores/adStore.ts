@@ -84,7 +84,7 @@ class AdStore {
     this.submitting = true;
     try {
       await agent.Adverts.create(ad);
-      runInAction('create activity', () => {
+      runInAction('create ad', () => {
         this.adRegistry.set(ad.id, ad);
         this.submitting = false;
       })

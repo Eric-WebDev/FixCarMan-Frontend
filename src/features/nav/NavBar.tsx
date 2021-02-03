@@ -15,8 +15,18 @@ import { Button, Container, Menu, MenuItem, Segment } from "semantic-ui-react";
         <Menu.Item name="home" as={NavLink} exact to='/'/>
         <Menu.Item name="garages" as={NavLink} to='/garages'/>
         <Menu.Item name="Search Ad" as={NavLink} to='/adverts'/>
-        <Menu.Item>
+        {/* <Menu.Item>
           <Button inverted color='green'>Place Fix my Car Ad</Button>
+        </Menu.Item> */}
+
+        <Menu.Item>
+          <Button
+            inverted
+            color='green'
+            as={NavLink} to='/createAd'
+            positive
+            content='Create Ad'
+          />
         </Menu.Item>
 
         <Menu.Menu position="right">

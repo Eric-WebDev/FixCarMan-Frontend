@@ -12,6 +12,8 @@ import HomePage from "../../features/Home/HomePage";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "../../features/adverts/Dashboard";
 import AdItem from "../../features/adverts/AdItem";
+import AdForm from "../../features/adverts/AdForm";
+import NotFound from "./NotFound";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
@@ -27,12 +29,12 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Switch>
                 <Route exact path='/adverts' component={Dashboard} />
                 <Route path='/adverts/:id' component={AdItem} />
-                {/* <Route
+                <Route
                   key={location.key}
-                  path={['/createActivity', '/manage/:id']}
-                  component={ActivityForm}
+                  path={['/createAd', '/manage/:id']}
+                  component={AdForm}
                 />
-                <Route component={NotFound} /> */}
+                <Route component={NotFound} />
               </Switch>
             </Container>
           </Fragment>
