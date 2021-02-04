@@ -11,7 +11,7 @@ export interface IAdvert {
 
 export interface IAdvertFormValues extends Partial<IAdvert> {
     time?: Date;
-    advertiser?: IAdvertiser;
+
 }
 
 export class AdvertFormValues implements IAdvertFormValues {

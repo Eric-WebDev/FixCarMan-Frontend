@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { createBrowserHistory } from 'history';
 import { IAdvert } from '../models/advertsFixCar/adverts';
+import { IGarage } from '../models/vehicles/garage';
 let history = createBrowserHistory();
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
@@ -42,7 +43,14 @@ const Adverts = {
     update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
     delete: (id: string) => requests.del(`/adverts/${id}`)
 }
-
+const Garages = {
+    list: (): Promise<IGarage[]> => requests.get('/garages'),
+    details: (id: string) => requests.get(`/garages/${id}`),
+    create: (garage: IGarage) => requests.post('/garages', garage),
+    update: (garage: IGarage) => requests.put(`/garages/${garage.id}`, garage),
+    delete: (id: string) => requests.del(`/garages/${id}`)
+}
 export default {
-    Adverts
+    Adverts,
+    Garages
 }

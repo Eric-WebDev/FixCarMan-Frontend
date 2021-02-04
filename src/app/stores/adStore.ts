@@ -88,7 +88,8 @@ class AdStore {
         this.adRegistry.set(ad.id, ad);
         this.submitting = false;
       })
-      history.push(`/adverts/${ad.id}`)
+      history.push(`/adverts`)
+      console.log(ad);
     } catch (error) {
       runInAction('create ads error', () => {
         this.submitting = false;

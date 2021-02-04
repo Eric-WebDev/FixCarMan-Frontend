@@ -71,10 +71,10 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
     const { date, ...ad } = values;
     ad.date = dateAndTime;
     if (!ad.id) {
-      //let newAd = {
-       // ...ad,
-        //id: uuid()
-     // };
+    //   let newAd = {
+    //    ...ad,
+    //     id: uuid()
+    //  };
       createAd(ad);
     } else {
       editAd(ad);
@@ -83,7 +83,7 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
 
   return (
     <Grid>
-      <Grid.Column width={10}>
+      <Grid.Column >
         <Segment clearing>
           <FinalForm
             validate={validate}
@@ -97,6 +97,13 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   value={ad.title}
                   component={TextInput}
                 />
+                   <Field
+                name='carModel'
+                placeholder='CarModel'
+                rows={3}
+                value={ad.carModel}
+                component={TextAreaInput}
+                />
                 <Field
                   name='description'
                   placeholder='Description'
@@ -104,24 +111,8 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   value={ad.description}
                   component={TextAreaInput}
                 />
-                <Field
-                name='carModel'
-                placeholder='CarModel'
-                rows={3}
-                value={ad.carModel}
-                component={TextAreaInput}
-                />
-                <Form.Group widths='equal'>
-                  <Field
-                    component={DateInput}
-                    name='date'
-                    date={true}
-                    placeholder='Date'
-                    value={ad.date}
-                  />
-
-                </Form.Group>
-
+             
+                
                 <Field
                   component={TextInput}
                   name='city'
@@ -146,6 +137,17 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   value={ad.advertiser?.phoneNumber}
                   component={TextInput}
                 />
+                <Form.Group widths='equal'>
+                  <Field
+                    component={DateInput}
+                    name='date'
+                    date={true}
+                    placeholder='Date'
+                    value={ad.date}
+                  />
+
+                </Form.Group>
+
 
                 <Button
                   loading={submitting}

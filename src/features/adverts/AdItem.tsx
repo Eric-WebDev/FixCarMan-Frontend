@@ -11,21 +11,21 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
         <Item.Group>
           <Item>          
             <Item.Content>
-              <Item.Header as='a'>{ad.title}</Item.Header>
+              <Item.Header as='a'>{ad?.title}</Item.Header>
               <Item.Meta >
-              <Icon name='car' /> {ad.carModel}
+              <Icon name='car' /> {ad?.carModel}
                 </Item.Meta>
               {/* <Icon name='car' />{" "} {ad.carModel}{" "}  */}
-              <Item.Description>{ad.description}</Item.Description>
+              <Item.Description>{ad?.description}</Item.Description>
             </Item.Content>
-            <Item.Image size='tiny'  src='/assets/user.png' />
+            <Item.Image size='small'  src='/assets/car.jpg' />
           </Item>
           <Button color='blue' inverted >Contact me </Button>
         </Item.Group>
       </Segment>
       <Segment >    
-        <Icon name='user' />{" "}{ad.advertiser.advertiserName}{" | "} 
-        <Icon name='marker' /> {" "} {ad.city}{" | "} 
+        <Icon name='user' />{" "}{ad?.advertiser?.advertiserName}{" | "} 
+        <Icon name='marker' /> {" "} {ad?.city}{" | "} 
         <Icon name='time' />{" "} {format(ad.date, 'MMMM do, yyyy')}{" "}
       </Segment>
     </Segment.Group>

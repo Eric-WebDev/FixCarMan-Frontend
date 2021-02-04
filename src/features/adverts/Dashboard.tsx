@@ -17,12 +17,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <Grid>
-      <Grid.Column width={10}>
+      <Grid.Column>
         <AdList/>
-      </Grid.Column>
-      <Grid.Column width={6}>
-        <h2>Ad filters</h2>
-      </Grid.Column>
+      </Grid.Column> 
     </Grid>
   );
 };
