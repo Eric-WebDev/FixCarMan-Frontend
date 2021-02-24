@@ -10,7 +10,7 @@ interface IProps {
 const GarageDisplay: React.FC<IProps> = ({garages}) => {
   return (
     <Container>
-      <Grid stackable width={12}>
+      <Grid stackable>
         <Grid.Column>
           <GarageList garages={garages}/>
         </Grid.Column>

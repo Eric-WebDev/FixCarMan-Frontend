@@ -25,7 +25,7 @@ const HomepageHeading = () => (
         <Responsive />
         <Header
           as="h2"
-          content="Place where you can find the best Services and the prices"
+          content="Place where you can find the best services"
         />
         <Button
           as={Link}
@@ -70,9 +70,9 @@ const HomePage = () => (
             </Header>
             <p style={{ fontSize: "1.33em" }}>
               We are providing simple to use and free connection platform for
-              car owners and Garages in Ireland. Getting someone to fix your car
-              has never been easier. We can help to find qualified and trustedgarage or 
-              specialized advise. 
+              car owners and  car services in Ireland. Getting someone to fix your car
+              has never been more comfortable. We can help to find qualified, and trusted garage or 
+              specialized advise.
             </p>
           </Grid.Column>
 

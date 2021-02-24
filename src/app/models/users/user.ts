@@ -1,8 +1,10 @@
 export interface IUser {
     id: number;
-    firstName: string;
-    lastName: string;
-    companyName: string;
+    username?: string;
+    token: string;
+    firstName?: string;
+    lastName?: string;
+    companyName?: string;
     profileDescription: string;
     email: string;
     phoneNumber: string;
@@ -13,4 +15,9 @@ export interface IUser {
     county: string;
     zipCode: string;
     isUserGarage: boolean;
+}
+export interface IUserFormValues {
+    email: string;
+    password: string;
+    username?: string;
 }

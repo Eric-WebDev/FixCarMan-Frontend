@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { createBrowserHistory } from 'history';
 import { IAdvert } from '../models/advertsFixCar/adverts';
-import { IGarage } from '../models/vehicles/garage';
+import { IUser, IUserFormValues } from '../models/users/user';
 let history = createBrowserHistory();
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
@@ -24,6 +24,7 @@ axios.interceptors.response.use(undefined, error => {
     throw error;
 })
 
+
 const responseBody = (response: AxiosResponse) => response.data;
 
 const sleep = (ms: number) => (response: AxiosResponse) => 
@@ -43,14 +44,21 @@ const Adverts = {
     update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
     delete: (id: string) => requests.del(`/adverts/${id}`)
 }
-const Garages = {
-    list: (): Promise<IGarage[]> => requests.get('/garages'),
-    details: (id: string) => requests.get(`/garages/${id}`),
-    create: (garage: IGarage) => requests.post('/garages', garage),
-    update: (garage: IGarage) => requests.put(`/garages/${garage.id}`, garage),
-    delete: (id: string) => requests.del(`/garages/${id}`)
+// const Garages = {
+//     list: (): Promise<IGarage[]> => requests.get('/garages'),
+//     details: (id: string) => requests.get(`/garages/${id}`),
+//     create: (garage: IGarage) => requests.post('/garages', garage),
+//     update: (garage: IGarage) => requests.put(`/garages/${garage.id}`, garage),
+//     delete: (id: string) => requests.del(`/garages/${id}`)
+// }
+
+const User = {
+    current: (): Promise<IUser> => requests.get('/user'),
+    login: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/login`, user),
+    register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user),
 }
+
 export default {
     Adverts,
-    Garages
+    User
 }

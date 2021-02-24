@@ -14,10 +14,10 @@ import {
 } from 'revalidate';
 import { AdvertFormValues } from '../../app/models/advertsFixCar/adverts';
 import { combineDateAndTime } from '../../app/Common/util/util';
-import TextInput from '../../app/Common/util/form/TextInput';
-import TextAreaInput from '../../app/Common/util/form/TextAreaInput';
-import SelectInput from '../../app/Common/util/form/SelectInput';
-import DateInput from '../../app/Common/util/form/DateInput';
+import TextInput from '../../app/Common/form/TextInput';
+import TextAreaInput from '../../app/Common/form/TextAreaInput';
+import DateInput from '../../app/Common/form/DateInput';
+
 
 const validate = combineValidators({
   title: isRequired({ message: 'title is required' }),
