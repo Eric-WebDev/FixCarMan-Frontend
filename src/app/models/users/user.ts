@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IProfile {
     id: number;
     username?: string;
     token: string;
@@ -16,6 +16,12 @@ export interface IUser {
     zipCode: string;
     image:string;
     isUserGarage: boolean;
+}
+
+export interface IUser {
+    username: string;
+    token: string;
+    image?: string;
 }
 export interface IUserFormValues {
     email: string;

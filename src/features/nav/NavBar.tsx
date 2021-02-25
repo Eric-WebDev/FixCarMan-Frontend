@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button, Container, Dropdown, Menu, MenuItem, Segment } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
 
@@ -37,18 +37,10 @@ import { RootStoreContext } from "../../app/stores/rootStore";
           <Menu.Item name="Register" /> */}
           {user && (
           <Menu.Item position='right'>
-            <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
-            <Dropdown pointing='top left' text={user.username}>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  as={Link}
-                  to={`/profile/username`}
-                  text='My profile'
-                  icon='user'
-                />
-                <Dropdown.Item onClick={logout} text='Logout' icon='power' />
-              </Dropdown.Menu>
-            </Dropdown>
+            {/* <Image avatar spaced='right' src={user.image || '/assets/user.png'} /> */}
+            <Menu.Item pointing='top left' text={user.username}>
+               <Menu.Item onClick={logout} text='Logout' icon='power' />
+            </Menu.Item>
           </Menu.Item>
         )}
         </Menu.Menu>

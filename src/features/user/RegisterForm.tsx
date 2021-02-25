@@ -10,7 +10,6 @@ import TextInput from '../../app/Common/form/TextInput';
 
 const validate = combineValidators({
   username: isRequired('Username'),
-  displayName: isRequired('DisplayName'),
   email: isRequired('Email'),
   password: isRequired('Password')
 });

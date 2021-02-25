@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
 import {
   Button,
@@ -12,10 +12,14 @@ import {
   Card,
   Segment
 } from "semantic-ui-react";
+import { RootStoreContext } from "../../app/stores/rootStore";
 import NavBar from "../nav/NavBar";
+import LoginForm from "../user/LoginForm";
+import RegisterForm from "../user/RegisterForm";
 
 
 const HomepageHeading = () => (
+  
   <Segment>
     <Grid stackable>
       <Grid.Column width={8}>
@@ -41,8 +45,12 @@ const HomepageHeading = () => (
     </Grid>
   </Segment>
 );
-const HomePage = () => (
-  
+const HomePage = () => {
+  const token = window.localStorage.getItem('jwt');
+  const rootStore = useContext(RootStoreContext);
+  const { user, isLoggedIn } = rootStore.userStore;
+  const {openModal} = rootStore.modalStore;
+  return(
   <Container>
     <NavBar />
     <Segment textAlign='center' vertical className='masthead'>
@@ -55,9 +63,26 @@ const HomePage = () => (
           />
         </Header>
         <Header as='h2' inverted content='Welcome to Fix Car Man' />
-        <Button as={Link} to='/adverts' size='huge' inverted>
-          Take me to see adverts!
-        </Button>
+  
+        {isLoggedIn && user && token ? (
+          <Fragment>
+            <Header as='h2' inverted content={`Welcome back ${user.username}`} />
+            <Button as={Link} to='/users' size='huge' inverted>
+              Go to activities!
+            </Button>
+          </Fragment>
+        ) : (
+          <Fragment>
+          <Header as='h2' inverted content={`Register or log in to see adverts !!!`} />
+          <Button onClick={() => openModal(<LoginForm />)} size='huge' inverted>
+            Login
+          </Button>
+          <Button onClick={() => openModal(<RegisterForm />)} size='huge' inverted>
+            Register
+          </Button>
+        </Fragment>
+        )}
+
       </Container>
     </Segment>
     <HomepageHeading />
@@ -123,5 +148,6 @@ const HomePage = () => (
     {/* <Footer /> */}
     <Segment/>
   </Container >
-);
+  )
+};
 export default withRouter(HomePage);

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import NavBar from "../../features/nav/NavBar";
 import { observer } from "mobx-react-lite";
 import { Container } from "semantic-ui-react";
@@ -12,7 +12,11 @@ import NotFound from "./NotFound";
 import GarageDisplay from "../../features/garages/GarageDisplay";
 import axios from "axios";
 import { IUser } from "../models/users/user";
-
+import LoginForm from "../../features/user/LoginForm";
+import { RootStoreContext } from "../stores/rootStore";
+import LoadingComponent from "./Loadding";
+import 'semantic-ui-css/semantic.min.css';
+import ModalContainer from "../Common/modals/ModalContainer";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   // const [garages, setGarages] = useState<IUser[]>([]);
 
@@ -27,10 +31,24 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   //       setGarages(garages);
   //     });
   // }, []);
+  const rootStore = useContext(RootStoreContext);
+  const {setAppLoaded, token, appLoaded} = rootStore.commonStore;
+  const {getUser} = rootStore.userStore;
 
+  useEffect(() => {
+    if (token) {
+      getUser().finally(() => setAppLoaded())
+    } else {
+      setAppLoaded();
+    }
+  }, [getUser, setAppLoaded, token])
+
+  if (!appLoaded)  return <LoadingComponent content='Loading app...' />
   return (
     <Fragment>
-      <ToastContainer position="bottom-right" />
+       <ModalContainer />
+      <ToastContainer position='bottom-right' />
+      <Route exact path='/' component={HomePage} />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}
@@ -49,6 +67,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                   path={["/createAd", "/manage/:id"]}
                   component={AdForm}
                 />
+                 <Route path='/login' component={LoginForm} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
