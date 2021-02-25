@@ -14,6 +14,7 @@ export interface IUser {
     city: string;
     county: string;
     zipCode: string;
+    image:string;
     isUserGarage: boolean;
 }
 export interface IUserFormValues {
