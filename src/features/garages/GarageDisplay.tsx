@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Segment, Image, Container, List } from "semantic-ui-react";
-import { IGarage } from "../../app/models/vehicles/garage";
+import { IGarage } from "../../app/models/profiles/garage";
 import GarageList from "./GarageList";
 
 

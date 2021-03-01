@@ -31,20 +31,23 @@ import { RootStoreContext } from "../../app/stores/rootStore";
             content='Create Ad'
           />
         </Menu.Item>
-
-        <Menu.Menu position="right">
-          {/* <Menu.Item name="login" />
-          <Menu.Item name="Register" /> */}
-          {user && (
+      </Menu>
+      {user && (
           <Menu.Item position='right'>
             {/* <Image avatar spaced='right' src={user.image || '/assets/user.png'} /> */}
-            <Menu.Item pointing='top left' text={user.username}>
-               <Menu.Item onClick={logout} text='Logout' icon='power' />
-            </Menu.Item>
+            <Dropdown pointing='top left' text={user.username}>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  as={Link}
+                  to={`/profile/${user.username}`}
+                  text='My profile'
+                  icon='user'
+                />
+                <Dropdown.Item onClick={logout} text='Logout' icon='power' />
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Item>
         )}
-        </Menu.Menu>
-      </Menu>
     </Container>
   );
 };

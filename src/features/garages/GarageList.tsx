@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
-import { IGarage } from "../../app/models/vehicles/garage";
+import { IGarage } from "../../app/models/profiles/garage";
+
 
 interface IProps {
   garages: IGarage[];
