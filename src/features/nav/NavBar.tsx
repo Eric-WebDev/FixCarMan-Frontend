@@ -8,9 +8,9 @@ import { RootStoreContext } from "../../app/stores/rootStore";
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
   return (
+    <Menu stackable pointing size="large"  >
     <Container>
-      <Menu stackable pointing size="large"  >
-      <Menu.Item>
+        <Menu.Item>
           <img src='/assets/logoFMC.jpg' alt="Logo"/>
           FixCarMan
         </Menu.Item>
@@ -31,15 +31,15 @@ import { RootStoreContext } from "../../app/stores/rootStore";
             content='Create Ad'
           />
         </Menu.Item>
-      </Menu>
+      
       {user && (
           <Menu.Item position='right'>
-            {/* <Image avatar spaced='right' src={user.image || '/assets/user.png'} /> */}
+            {/* <image avatar spaced='right' src={user.image || '/assets/user.png'} /> */}
             <Dropdown pointing='top left' text={user.username}>
               <Dropdown.Menu>
                 <Dropdown.Item
                   as={Link}
-                  to={`/profile/${user.username}`}
+                  to={`/profiles/${user.username}`}
                   text='My profile'
                   icon='user'
                 />
@@ -49,6 +49,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
           </Menu.Item>
         )}
     </Container>
+    </Menu>
   );
 };
 export default observer(NavBar);

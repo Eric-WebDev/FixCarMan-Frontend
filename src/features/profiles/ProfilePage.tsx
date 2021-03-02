@@ -3,6 +3,10 @@ import { Grid } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
+import LoadingComponent from '../../app/layout/Loadding';
+import ProfileContent from './ProfileContent';
+import ProfileHead from './ProfileHead';
+
 
 interface RouteParams {
   username: string;
@@ -30,12 +34,10 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={16}>
-        <ProfileHeader
+        <ProfileHead
           profile={profile!}
           isCurrentUser={isCurrentUser}
           loading={loading}
-          follow={follow}
-          unfollow={unfollow}
         />
         <ProfileContent setActiveTab={setActiveTab} />
       </Grid.Column>

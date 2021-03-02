@@ -17,6 +17,8 @@ import { RootStoreContext } from "../stores/rootStore";
 import LoadingComponent from "./Loadding";
 import 'semantic-ui-css/semantic.min.css';
 import ModalContainer from "../Common/modals/ModalContainer";
+import PrivateRoute from "./PrivateRoute";
+import ProfilePage from "../../features/profiles/ProfilePage";
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   // const [garages, setGarages] = useState<IUser[]>([]);
 
@@ -52,21 +54,21 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
       <Route
         path={"/(.+)"}
         render={() => (
-          <Fragment>
+          <Fragment>           
+            <Container>
             <NavBar />
-            <Container style={{ marginTop: "7em" }}>
               <Switch>
-                <Route exact path="/adverts" component={Dashboard} />
-                <Route path="/adverts/:id" component={AdItem} />
+                {/* <Route exact path="/adverts" component={Dashboard} />
+                <Route path="/adverts/:id" component={AdItem} /> */}
                 {/* <Route exact path="/garages">
                   <GarageDisplay garages={garages} />
                 </Route> */}
-                <Route
+                {/* <Route
                   key={location.key}
                   path={["/createAd", "/manage/:id"]}
                   component={AdForm}
-                />
-                 <Route path='/login' component={LoginForm} />
+                /> */}
+               <PrivateRoute path='/profiles/:username' component={ProfilePage} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
