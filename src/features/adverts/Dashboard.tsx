@@ -1,26 +1,55 @@
-import React, { useContext, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Grid, Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
-import AdStore from '../../app/stores/adStore'
 import LoadingComponent from '../../app/layout/Loadding';
 import AdList from './AdList'
+import { RootStoreContext } from '../../app/stores/rootStore';
+import AdItemItemPlaceholder from './AdItemPlaceholder';
+import InfiniteScroll from 'react-infinite-scroller';
 const Dashboard: React.FC = () => {
 
-  const adStore = useContext(AdStore);
+  const rootStore = useContext(RootStoreContext);
+  const {
+    loadAds,
+    loadingInitial,
+    setPage,
+    page,
+    totalPages
+  } = rootStore.adStore;
+  const [loadingNext, setLoadingNext] = useState(false);
+
+  const handleGetNext = () => {
+    setLoadingNext(true);
+    setPage(page + 1);
+    loadAds().then(() => setLoadingNext(false));
+  };
 
   useEffect(() => {
-    adStore.loadAds();
-  }, [adStore]);
-
-  if (adStore.loadingInitial)
-    return <LoadingComponent content='Loading ads' />;
+    loadAds();
+  }, [loadAds]);
 
   return (
     <Grid>
-      <Grid.Column>
-        <AdList/>
-      </Grid.Column> 
-    </Grid>
+    <Grid.Column width={10}>
+      {loadingInitial && page === 0 ? (
+        <AdItemItemPlaceholder />
+      ) : (
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={handleGetNext}
+          hasMore={!loadingNext && page + 1 < totalPages}
+          initialLoad={false}
+        >
+          <AdList />
+        </InfiniteScroll>
+      )}
+    </Grid.Column>
+    <Grid.Column width={6}>
+    </Grid.Column>
+    <Grid.Column width={10}>
+      <Loader active={loadingNext} />
+    </Grid.Column>
+  </Grid>
   );
 };
 

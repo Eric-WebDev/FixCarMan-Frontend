@@ -58,8 +58,8 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container>
             <NavBar />
               <Switch>
-                {/* <Route exact path="/adverts" component={Dashboard} />
-                <Route path="/adverts/:id" component={AdItem} /> */}
+                <Route exact path="/adverts" component={Dashboard} />
+                <Route path="/adverts/:id" component={AdItem} />
                 {/* <Route exact path="/garages">
                   <GarageDisplay garages={garages} />
                 </Route> */}

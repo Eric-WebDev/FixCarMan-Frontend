@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import { Form as FinalForm, Field } from 'react-final-form';
-import AdStore from '../../app/stores/adStore'
 
 import {
   combineValidators,
@@ -17,6 +16,7 @@ import { combineDateAndTime } from '../../app/Common/util/util';
 import TextInput from '../../app/Common/form/TextInput';
 import TextAreaInput from '../../app/Common/form/TextAreaInput';
 import DateInput from '../../app/Common/form/DateInput';
+import { RootStoreContext } from '../../app/stores/rootStore';
 
 
 const validate = combineValidators({
@@ -44,13 +44,13 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history
 }) => {
-  const adStore = useContext(AdStore);
+  const rootStore = useContext(RootStoreContext);
   const {
     createAd,
     editAd,
     submitting,
     loadAd
-  } = adStore;
+  } = rootStore.adStore;
 
   const [ad, setAd] = useState(new AdvertFormValues());
   const [loading, setLoading] = useState(false);

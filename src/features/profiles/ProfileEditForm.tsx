@@ -9,7 +9,7 @@ import TextAreaInput from '../../app/Common/form/TextAreaInput';
 
 
 const validate = combineValidators({
-  displayName: isRequired('displayName')
+  //username: isRequired('username')
 });
 
 interface IProps {
@@ -26,22 +26,22 @@ const ProfileEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
       render={({ handleSubmit, invalid, pristine, submitting }) => (
         <Form onSubmit={handleSubmit} error>
           <Field
-            name='displayName'
+            name='username'
             component={TextInput}
-            placeholder='Display Name'
+            placeholder='User Name'
             value={profile!.username}
           />
           <Field
-            name='FirstName'
+            name='firstName'
             component={TextInput}
             placeholder='First Name'
             value={profile!.firstName}
           />
           <Field
-            name='displayName'
+            name='lastName'
             component={TextInput}
-            placeholder='Display Name'
-            value={profile!.username}
+            placeholder='Second Name'
+            value={profile!.lastName}
           />
           <Field
             name='street'
@@ -51,18 +51,23 @@ const ProfileEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
             value={profile!.street}
           />
           <Field
-            name='City'
+            name='city'
             component={TextInput}
             placeholder='City'
-            value={profile!.username}
+            value={profile!.city}
           />
           <Field
-            name='County'
+            name='county'
             component={TextInput}
             placeholder='County'
             value={profile!.county}
           />
-          
+          <Field
+            name='profileDescription'
+            component={TextInput}
+            placeholder='Description'
+            value={profile!.profileDescription}
+          />
           <Button 
             loading={submitting}
             floated='right'

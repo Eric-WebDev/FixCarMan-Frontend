@@ -37,7 +37,7 @@ const RegisterForm = () => {
           <Header
             as='h2'
             content='Sign up'
-            color='teal'
+            color='blue'
             textAlign='center'
           />
           <Field name='username' component={TextInput} placeholder='Username' />
@@ -56,7 +56,7 @@ const RegisterForm = () => {
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
-            color='teal'
+            color='blue'
             content='Register'
             fluid
           />

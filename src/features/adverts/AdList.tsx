@@ -3,10 +3,11 @@ import { Item, Label } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import AdStore from '../../app/stores/adStore';
 import AdItem from './AdItem'
+import { RootStoreContext } from '../../app/stores/rootStore';
 
 const AdList: React.FC = () => {
-  const adStore = useContext(AdStore);
-  const { activitiesByDate: adsByDate } = adStore;
+  const rootStore = useContext(RootStoreContext);
+  const { adsByDate } = rootStore.adStore;
   return (
     <Fragment>
       {adsByDate.map(([group, ads]) => (

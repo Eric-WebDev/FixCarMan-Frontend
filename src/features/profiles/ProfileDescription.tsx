@@ -12,15 +12,16 @@ const ProfileDescription = () => {
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          {/* <Header
+          <Header
             floated='left'
             icon='user'
-            content={`About ${profile!.username}`}
-          /> */}
+            content={` ${profile!.username}'s profile`}
+          />
           {isCurrentUser && (
             <Button
               floated='right'
-              basic
+              inverted 
+              color='blue'
               content={editMode ? 'Cancel' : 'Edit Profile'}
               onClick={() => setEditMode(!editMode)}
             />

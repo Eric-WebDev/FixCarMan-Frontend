@@ -1,3 +1,6 @@
+import { IAdvert } from "../../models/advertsFixCar/adverts";
+import { IProfile, IUser } from "../../models/users/user";
+
 export const combineDateAndTime = (date: Date) => {
     // const timeString = time.getHours() + ':' + time.getMinutes() + ':00';
 
@@ -11,5 +14,8 @@ export const combineDateAndTime = (date: Date) => {
 
     return new Date(dateString + 'T' );
 }
-
+export const setAdProps = (ad: IAdvert) => {
+    ad.date = new Date(ad.date);
+    return ad;
+}
 

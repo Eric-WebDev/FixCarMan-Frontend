@@ -43,7 +43,21 @@ export default class ProfileStore {
       console.log(error);
     }
   };
-
+  @action create = async (profile: Partial<IProfile>) => {
+    try {
+      await agent.Profiles.create(profile);
+      runInAction(() => {
+        if (
+          profile.username !== this.rootStore.userStore.user!.username
+        ) {
+          this.rootStore.userStore.user!.username = profile.username!;
+        }
+        this.profile = { ...this.profile!, ...profile };
+      });
+    } catch (error) {
+      toast.error('Problem creating profile');
+    }
+  };
 
   @action updateProfile = async (profile: Partial<IProfile>) => {
     try {
