@@ -5,7 +5,6 @@ import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IAdvert } from '../models/advertsFixCar/adverts';
 import { RootStore } from './rootStore';
-import { HubConnection } from '@aspnet/signalr';
 import { setAdProps } from '../Common/util/util';
 
 const LIMIT = 5;

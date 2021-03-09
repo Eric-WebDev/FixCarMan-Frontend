@@ -63,9 +63,14 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 {/* <Route exact path="/garages">
                   <GarageDisplay garages={garages} />
                 </Route> */}
-                {/* <Route
+                <Route
                   key={location.key}
                   path={["/createAd", "/manage/:id"]}
+                  component={AdForm}
+                />
+                {/* <PrivateRoute
+                  key={location.key}
+                  path={['/createAd', '/manage/:id']}
                   component={AdForm}
                 /> */}
                <PrivateRoute path='/profiles/:username' component={ProfilePage} />

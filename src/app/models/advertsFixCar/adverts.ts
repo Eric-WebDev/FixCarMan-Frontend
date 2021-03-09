@@ -1,3 +1,7 @@
+export interface IAdvertsEnvelope {
+    activities: IAdvert[];
+    advertCount: number;
+  }
 export interface IAdvert {
     id: number;
     title: string;
@@ -16,7 +20,7 @@ export interface IAdvertFormValues extends Partial<IAdvert> {
 
 export class AdvertFormValues implements IAdvertFormValues {
     id?: number = undefined;
-    title: string = 'test';
+    title: string = '';
     carModel: string = '';
     description: string = '';
     date?: Date = undefined;

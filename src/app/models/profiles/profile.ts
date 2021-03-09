@@ -1,8 +1,5 @@
-import { IUser } from "../users/user";
-
-export interface UserProfileDetails {
-    appUserId: string;
-    appUser: IUser;
+export interface IProfile {
+    username:string;
     firstName?: string;
     lastName?: string;
     companyName?: string;
@@ -16,4 +13,16 @@ export interface UserProfileDetails {
     isUserGarage: boolean;
     advertId: string;
     image: string;
+    photos: IPhoto[];
 }
+
+export interface IPhoto {
+    id: string;
+    url: string;
+  }
+export interface IUserAdvert {
+    id: string;
+    title: string;
+    description: string;
+    date: Date;
+  }

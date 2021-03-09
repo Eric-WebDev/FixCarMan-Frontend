@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
-import { IAdvert } from "../models/advertsFixCar/adverts";
+import { IAdvert, IAdvertsEnvelope, IPhoto } from "../models/advertsFixCar/adverts";
 import { IProfile, IUser, IUserFormValues } from "../models/users/user";
 let history = createBrowserHistory();
 
@@ -75,7 +75,8 @@ const requests = {
   }
 };
 const Adverts = {
-  list: (): Promise<IAdvert[]> => requests.get("/adverts"),
+  list: (params: URLSearchParams): Promise<IAdvertsEnvelope> =>
+    axios.get('/adverts', {params: params}).then(responseBody),
   details: (id: string) => requests.get(`/adverts/${id}`),
   create: (advert: IAdvert) => requests.post("/adverts", advert),
   update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
@@ -101,7 +102,12 @@ const Profiles = {
   updateProfile: (profile: Partial<IProfile>) =>
     requests.put(`/profiles`, profile),
   create: (profile: Partial<IProfile>) =>
-    requests.post(`/profiles`, profile)
+    requests.post(`/profiles`, profile),
+  listAdverts: (username: string, predicate: string) =>
+    requests.get(`/profiles/${username}/activities?predicate=${predicate}`),
+  uploadPhoto: (photo: Blob): Promise<IPhoto> =>
+    requests.postForm(`/photos`, photo),
+    deletePhoto: (id: string) => requests.del(`/photos/${id}`) 
   // updateProfile: (profile: IAdvert) => requests.post("/profiles", profile),
 };
 
