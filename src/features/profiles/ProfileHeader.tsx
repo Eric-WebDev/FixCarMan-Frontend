@@ -7,7 +7,7 @@ import {
 
 } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
-import { IProfile } from '../../app/models/users/user';
+import { IProfile } from '../../app/models/profiles/profile';
 
 interface IProps {
   profile: IProfile;

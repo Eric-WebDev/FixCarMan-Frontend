@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
-import { IAdvert, IAdvertsEnvelope, IPhoto } from "../models/advertsFixCar/adverts";
-import { IProfile, IUser, IUserFormValues } from "../models/users/user";
+import { IAdvert, IAdvertsEnvelope} from "../models/advertsFixCar/adverts";
+import { IUser, IUserFormValues } from "../models/users/user";
+import { IProfile } from "../models/profiles/profile";
 let history = createBrowserHistory();
 
 axios.defaults.baseURL = "http://localhost:5000/api";
-
 
 axios.interceptors.request.use(
   config => {
@@ -74,6 +74,7 @@ const requests = {
       .then(responseBody);
   }
 };
+
 const Adverts = {
   list: (params: URLSearchParams): Promise<IAdvertsEnvelope> =>
     axios.get('/adverts', {params: params}).then(responseBody),
@@ -82,13 +83,7 @@ const Adverts = {
   update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
   delete: (id: string) => requests.del(`/adverts/${id}`)
 };
-// const Garages = {
-//     list: (): Promise<IGarage[]> => requests.get('/garages'),
-//     details: (id: string) => requests.get(`/garages/${id}`),
-//     create: (garage: IGarage) => requests.post('/garages', garage),
-//     update: (garage: IGarage) => requests.put(`/garages/${garage.id}`, garage),
-//     delete: (id: string) => requests.del(`/garages/${id}`)
-// }
+
 const User = {
   current: (): Promise<IUser> => requests.get("/user"),
   login: (user: IUserFormValues): Promise<IUser> =>
@@ -96,6 +91,7 @@ const User = {
   register: (user: IUserFormValues): Promise<IUser> =>
     requests.post(`/user/register`, user)
 };
+
 const Profiles = {
   get: (username: string): Promise<IProfile> =>
     requests.get(`/profiles/${username}`),
@@ -104,11 +100,10 @@ const Profiles = {
   create: (profile: Partial<IProfile>) =>
     requests.post(`/profiles`, profile),
   listAdverts: (username: string, predicate: string) =>
-    requests.get(`/profiles/${username}/activities?predicate=${predicate}`),
-  uploadPhoto: (photo: Blob): Promise<IPhoto> =>
-    requests.postForm(`/photos`, photo),
-    deletePhoto: (id: string) => requests.del(`/photos/${id}`) 
-  // updateProfile: (profile: IAdvert) => requests.post("/profiles", profile),
+    requests.get(`/profiles/${username}/adverts?predicate=${predicate}`),
+  // uploadPhoto: (photo: Blob): Promise<IPhoto> =>
+  //   requests.postForm(`/photos`, photo),
+    // deletePhoto: (id: string) => requests.del(`/photos/${id}`) 
 };
 
 

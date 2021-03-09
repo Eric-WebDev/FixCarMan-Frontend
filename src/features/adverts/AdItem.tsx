@@ -1,6 +1,5 @@
 import React from 'react';
 import { Item, Button, Segment, Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import {format} from 'date-fns';
 import { IAdvert } from '../../app/models/advertsFixCar/adverts';
 

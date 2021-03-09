@@ -1,15 +1,14 @@
 export interface IAdvertsEnvelope {
-    activities: IAdvert[];
+    adverts: IAdvert[];
     advertCount: number;
   }
 export interface IAdvert {
-    id: number;
+    id: string;
     title: string;
     carModel: string;
     description: string;
     date: Date;
     city: string;
-    photos: IPhoto[];
     advertiser: IAdvertiser;
 }
 
@@ -19,7 +18,7 @@ export interface IAdvertFormValues extends Partial<IAdvert> {
 }
 
 export class AdvertFormValues implements IAdvertFormValues {
-    id?: number = undefined;
+    id?: string = undefined;
     title: string = '';
     carModel: string = '';
     description: string = '';
@@ -41,10 +40,4 @@ export interface IAdvertiser {
     advertiserName: string ;
     email: string;
     phoneNumber: string ;
-}
-export interface IPhoto {
-    id: string;
-    url: string;
-    isMain: boolean;
-    photoAdvert: IAdvert;
 }

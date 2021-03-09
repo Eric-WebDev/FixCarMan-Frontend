@@ -3,9 +3,9 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { observer } from 'mobx-react-lite';
 import { combineValidators, isRequired } from 'revalidate';
 import { Form, Button } from 'semantic-ui-react';
-import { IProfile } from '../../app/models/users/user';
 import TextInput from '../../app/Common/form/TextInput';
 import TextAreaInput from '../../app/Common/form/TextAreaInput';
+import { IProfile } from '../../app/models/profiles/profile';
 
 
 const validate = combineValidators({

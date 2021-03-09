@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import { IAdvert } from '../models/advertsFixCar/adverts';
 import { RootStore } from './rootStore';
 import { setAdProps } from '../Common/util/util';
-
 const LIMIT = 5;
 export default class AdStore {
 
@@ -86,21 +85,23 @@ groupAdsByDate(ads: IAdvert[]) {
 }
 
 @action loadAds = async () => {
-    this.loadingInitial = true;
-    try {
-      const ads = await agent.Adverts.list();
-      runInAction('loading ads', () => {
-        ads.forEach(ad => {
-          setAdProps(ad);
-          this.adRegistry.set(ad.id, ad);
-        });
-        this.loadingInitial = false;
-      })
-    } catch (error) {
-      runInAction('load ads error', () => {
-        this.loadingInitial = false;
-      })
-    }
+  this.loadingInitial = true;
+  try {
+    const adsEnvelope = await agent.Adverts.list(this.axiosParams);
+    const {adverts, advertCount} = adsEnvelope;
+    runInAction('loading ads', () => {
+      adverts.forEach(ad => {
+        setAdProps(ad, this.rootStore.userStore.user!);
+        this.adRegistry.set(ad.id, ad);
+      });
+      this.adCount = advertCount;
+      this.loadingInitial = false;
+    });
+  } catch (error) {
+    runInAction('load ads error', () => {
+      this.loadingInitial = false;
+    });
+  }
   };
 
  
@@ -114,7 +115,7 @@ groupAdsByDate(ads: IAdvert[]) {
       try {
         ad = await agent.Adverts.details(id);
         runInAction('getting ad', () => {
-          setAdProps(ad);
+          setAdProps(ad, this.rootStore.userStore.user!);
           this.ad = ad;
           this.adRegistry.set(ad.id, ad);
           this.loadingInitial = false;

@@ -67,15 +67,15 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
   }, [loadAd, match.params.id]);
 
   const handleFinalFormSubmit = (values: any) => {
-    const dateAndTime = combineDateAndTime(values.date);
+    const dateAndTime = combineDateAndTime(values.date,values.time);
     const { date, ...ad } = values;
     ad.date = dateAndTime;
     if (!ad.id) {
-    //   let newAd = {
-    //    ...ad,
-    //     id: uuid()
-    //  };
-      createAd(ad);
+      let newAd = {
+       ...ad,
+        id: uuid()
+     };
+      createAd(newAd);
     } else {
       editAd(ad);
     }
