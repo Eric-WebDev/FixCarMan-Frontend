@@ -9,6 +9,7 @@ export interface IAdvert {
     description: string;
     date: Date;
     city: string;
+    isAdvertCreator: boolean,
     advertiser: IAdvertiser;
 }
 
@@ -37,7 +38,9 @@ export class AdvertFormValues implements IAdvertFormValues {
 
 export interface IAdvertiser {
     advertiserId: number ;
-    advertiserName: string ;
+    image:string;
+    username: string ;
     email: string;
     phoneNumber: string ;
+    isAdvertCreator: boolean;
 }

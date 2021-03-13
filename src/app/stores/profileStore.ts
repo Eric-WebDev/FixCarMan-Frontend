@@ -28,7 +28,7 @@ export default class ProfileStore {
   @action loadUserAdverts = async (username: string, predicate?: string) => {
     this.loadingAdverts = true;
     try {
-      const adverts = await agent.Profiles.listAdverts(username, predicate!);
+      const adverts = await agent.Profiles.listAdverts(username,predicate!);
       runInAction(() => {
         this.userAdverts = adverts;
         this.loadingAdverts = false;

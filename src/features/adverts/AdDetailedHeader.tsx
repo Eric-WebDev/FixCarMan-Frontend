@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { IAdvert } from '../../app/models/advertsFixCar/adverts';
 import { RootStoreContext } from '../../app/stores/rootStore';
+import { IProfile } from '../../app/models/profiles/profile';
 
 
 const adImageStyle = {
@@ -20,21 +21,16 @@ const adImageTextStyle = {
   color: 'white'
 };
 
-const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({
-ad
+const AdDetailedHeader: React.FC<{ ad: IAdvert,profile:IProfile }> = ({
+ad,profile
 }) => {
   const advertiser = ad.advertiser;
-  const loggedInUser = localStorage.getItem("user");
   const rootStore = useContext(RootStoreContext);
-  const { loading } = rootStore.adStore;
+  const {  loading } = rootStore.adStore;
   return (
     <Segment.Group>
       <Segment basic attached='top' style={{ padding: '0' }}>
-        {/* <Image
-          src={`/assets/categoryImages/${ad.carModel}.jpg`}
-          fluid
-          style={adImageStyle}
-        /> */}
+        
         <Segment style={adImageTextStyle} basic>
           <Item.Group>
             <Item>
@@ -46,9 +42,9 @@ ad
                 />
                 <p>{format(ad.date, 'eeee do MMMM')}</p>
                 <p>
-                  advertiser username {' '}
-                  <Link to={`/profile/${advertiser.advertiserName}`}>
-                    <strong>{advertiser.advertiserName}</strong>
+                  Advertised by{' '}
+                  <Link to={`/profile/${advertiser.username}`}>
+                    <strong>{advertiser.username}</strong>
                   </Link>
                 </p>
               </Item.Content>
@@ -57,23 +53,27 @@ ad
         </Segment>
       </Segment>
       <Segment clearing attached='bottom'>
-        {loggedInUser? (
+        {ad.isAdvertCreator ? (
           <Button
             as={Link}
             to={`/manage/${ad.id}`}
-            color='orange'
+            color='green'
             floated='right'
           >
-            Manage My Adverts
+            Manage Advert
           </Button>
-        )  : (
-          <Button loading={loading} color='blue'>
-            Contact
+        ) :  profile.isUserGarage ?(
+          <Button loading={loading} >
+            Send private message
+          </Button>
+        ) : (
+          <Button loading={loading}  color='teal'>
+            Contact to fix 
           </Button>
         )}
       </Segment>
     </Segment.Group>
-  );
+  )
 };
 
 export default observer(AdDetailedHeader);

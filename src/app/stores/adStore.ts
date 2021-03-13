@@ -160,6 +160,7 @@ groupAdsByDate(ads: IAdvert[]) {
     this.submitting = true;
     try {
       await agent.Adverts.update(ad);
+      ad.isAdvertCreator=true;
       runInAction('editing ad', () => {
         this.adRegistry.set(ad.id, ad);
         this.ad = ad;

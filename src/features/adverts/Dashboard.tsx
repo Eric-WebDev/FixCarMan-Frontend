@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Grid, Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
-import LoadingComponent from '../../app/layout/Loadding';
 import AdList from './AdList'
 import { RootStoreContext } from '../../app/stores/rootStore';
 import AdItemItemPlaceholder from './AdItemPlaceholder';
 import InfiniteScroll from 'react-infinite-scroller';
+import AdFilters from './AdFilters';
 const Dashboard: React.FC = () => {
 
   const rootStore = useContext(RootStoreContext);
@@ -45,10 +45,11 @@ const Dashboard: React.FC = () => {
       )}
     </Grid.Column>
     <Grid.Column width={6}>
-    </Grid.Column>
-    <Grid.Column width={10}>
-      <Loader active={loadingNext} />
-    </Grid.Column>
+        <AdFilters />
+      </Grid.Column>
+      <Grid.Column width={10}>
+        <Loader active={loadingNext} />
+      </Grid.Column>
   </Grid>
   );
 };

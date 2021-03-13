@@ -5,7 +5,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import LoadingComponent from '../../app/layout/Loadding';
 import ProfileContent from './ProfileContent';
-import ProfileHead from './ProfileHead';
+import ProfileHeader from './ProfileHeader';
 
 
 interface RouteParams {
@@ -34,7 +34,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={16}>
-        <ProfileHead
+        <ProfileHeader
           profile={profile!}
           isCurrentUser={isCurrentUser}
           loading={loading}

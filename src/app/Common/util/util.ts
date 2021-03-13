@@ -1,4 +1,4 @@
-import { IAdvert } from "../../models/advertsFixCar/adverts";
+import { IAdvert, IAdvertiser } from "../../models/advertsFixCar/adverts";
 import { IUser } from "../../models/users/user";
 
 export const combineDateAndTime = (date: Date,time:Date) => {

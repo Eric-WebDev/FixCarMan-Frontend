@@ -6,6 +6,11 @@ import { format } from 'date-fns';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { IUserAdvert } from '../../app/models/profiles/profile';
 
+const panes = [
+  { menuItem: 'Active', pane: { key: 'factive' } },
+  { menuItem: 'Expired', pane: { key: 'expired' } },
+  { menuItem: 'Created', pane: { key: 'created' } }
+];
 
 const ProfileEvents = () => {
   const rootStore = useContext(RootStoreContext);
@@ -20,6 +25,24 @@ const ProfileEvents = () => {
     loadUserAdverts(profile!.username);
   }, [loadUserAdverts, profile]);
 
+  const handleTabChange = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    data: TabProps
+  ) => {
+    let predicate;
+    switch (data.activeIndex) {
+      case 1:
+        predicate = 'expired';
+        break;
+      case 2:
+        predicate = 'created';
+        break;
+      default:
+        predicate = 'active';
+        break;
+    }
+    loadUserAdverts(profile!.username, predicate);
+  };
 
   return (
     <Tab.Pane loading={loadingAdverts}>
@@ -28,7 +51,11 @@ const ProfileEvents = () => {
           <Header floated='left' icon='calendar' content={'Adverts'} />
         </Grid.Column>
         <Grid.Column width={16}>
-         
+          <Tab
+            panes={panes}
+            menu={{ secondary: true, pointing: true }}
+            onTabChange={(e, data) => handleTabChange(e, data)}
+          />
           <br />
           <Card.Group itemsPerRow={4}>
             {userAdverts.map((advert: IUserAdvert) => (
@@ -38,7 +65,7 @@ const ProfileEvents = () => {
                 key={advert.id}
               >
                 {/* <Image
-                  src={`/assets/categoryImages/${advert}.jpg`}
+                  src={`/assets/categoryImages/${activity.category}.jpg`}
                   style={{ minHeight: 100, objectFit: 'cover' }}
                 /> */}
                 <Card.Content>
