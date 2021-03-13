@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
 import { IAdvert, IAdvertsEnvelope} from "../models/advertsFixCar/adverts";
 import { IUser, IUserFormValues } from "../models/users/user";
-import { IProfile } from "../models/profiles/profile";
+import { IProfile, IUserAdvert } from "../models/profiles/profile";
 let history = createBrowserHistory();
 
 axios.defaults.baseURL = "http://localhost:5000/api";
@@ -99,8 +99,8 @@ const Profiles = {
     requests.put(`/profiles`, profile),
   create: (profile: Partial<IProfile>) =>
     requests.post(`/profiles`, profile),
-  listAdverts: (username: string, predicate: string) =>
-    requests.get(`/profiles/${username}/adverts?predicate=${predicate}`),
+  listAdverts: (username: string,predicate:string) =>
+    requests.get<IUserAdvert[]>(`/profiles/${username}/adverts?predicate=${predicate}`)
   // uploadPhoto: (photo: Blob): Promise<IPhoto> =>
   //   requests.postForm(`/photos`, photo),
     // deletePhoto: (id: string) => requests.del(`/photos/${id}`) 
