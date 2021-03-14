@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import LoadingComponent from '../../app/layout/Loadding';
 import ProfileContent from './ProfileContent';
 import ProfileHeader from './ProfileHeader';
+import ProfileHead from './ProfileHead';
 
 
 interface RouteParams {
@@ -34,7 +35,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={16}>
-        <ProfileHeader
+        <ProfileHead
           profile={profile!}
           isCurrentUser={isCurrentUser}
           loading={loading}

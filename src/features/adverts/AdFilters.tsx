@@ -21,7 +21,7 @@ const AdvertFilters = () => {
   
         <Menu.Item
           active={predicate.has('isAdvertCreator')}
-          onClick={() => setPredicate('sAdvertCreator', 'true')}
+          onClick={() => setPredicate('IsAdvertCreator', 'true')}
           color={'blue'}
           name={'advertiser'}
           content={"My adverts"}

@@ -119,12 +119,12 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   placeholder='City'
                   value={ad.city}
                 />
-              <Field
+              {/* <Field
                   name='advertiserName'
                   placeholder='AdvertiserName'
-                  value={ad.advertiser?.username}
+                  value={ad.advertiser?.advertUsername}
                   component={TextInput}
-                /> 
+                />  */}
                   <Field
                   name='email'
                   placeholder='Email'

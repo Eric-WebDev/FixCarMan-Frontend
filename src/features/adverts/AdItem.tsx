@@ -4,8 +4,9 @@ import {format} from 'date-fns';
 import { IAdvert } from '../../app/models/advertsFixCar/adverts';
 import { Link } from 'react-router-dom';
 
-const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
-  // const advertiser = ad.advertiser;
+
+const AdItem: React.FC<{ ad: IAdvert}> = ({ ad }) => {
+   const advertiser = ad.advertiser;
   return (
     <Segment.Group>
       <Segment>
@@ -21,10 +22,10 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
               <Item.Header as={Link} to={`/adverts/${ad.id}`}>
                 {ad.title}
               </Item.Header>
-              {/* <Item.Description>
+              <Item.Description>
                 Advertised by
-                <Link to={`/profile/${ad.advertiser.username}`}> {ad.advertiser.username}</Link>
-              </Item.Description> */}
+                <Link to={`/profile/${ad.advertiserUsername}`}> {ad.advertiserUsername}</Link>
+              </Item.Description>
               {ad.isAdvertCreator && (
                 <Item.Description>
                   <Label
@@ -48,7 +49,7 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
               <Item.Meta >
               <Icon name='car' /> {ad?.carModel}
                 </Item.Meta>
-              {/* <Icon name='car' />{" "} {ad.carModel}{" "}  */}
+              
               <Item.Description>{ad?.description}</Item.Description>
             </Item.Content>
             <Item.Image size='small'  src='/assets/car.jpg' />
@@ -57,7 +58,7 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
         </Item.Group>
       </Segment>
       <Segment >    
-        <Icon name='user' />{" "}{ad?.advertiser?.username}{" | "} 
+        <Icon name='user' />{" "}{ad?.advertiserUsername}{" | "} 
         <Icon name='marker' /> {" "} {ad?.city}{" | "} 
         <Icon name='time' />{" "} {format(ad.date, 'MMMM do, yyyy')}{" "}
         </Segment>

@@ -100,7 +100,7 @@ const Profiles = {
   create: (profile: Partial<IProfile>) =>
     requests.post(`/profiles`, profile),
   listAdverts: (username: string,predicate:string) =>
-    requests.get<IUserAdvert[]>(`/profiles/${username}/adverts?predicate=${predicate}`)
+    requests.get(`/profiles/${username}/adverts?predicate=${predicate}`)
   // uploadPhoto: (photo: Blob): Promise<IPhoto> =>
   //   requests.postForm(`/photos`, photo),
     // deletePhoto: (id: string) => requests.del(`/photos/${id}`) 

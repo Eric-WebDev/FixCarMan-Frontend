@@ -10,7 +10,9 @@ export interface IAdvert {
     date: Date;
     city: string;
     isAdvertCreator: boolean,
+    isContactAlowed:boolean,
     advertiser: IAdvertiser;
+    advertiserUsername:string;
 }
 
 export interface IAdvertFormValues extends Partial<IAdvert> {
@@ -27,7 +29,7 @@ export class AdvertFormValues implements IAdvertFormValues {
     time?: Date = undefined;
     city: string = '';
     advertiser?: IAdvertiser = undefined;
-
+    advertiserUsername?:string=undefined;
     constructor(init?: IAdvertFormValues) {
         if (init && init.date) {
             init.time = init.date;
@@ -39,7 +41,7 @@ export class AdvertFormValues implements IAdvertFormValues {
 export interface IAdvertiser {
     advertiserId: number ;
     image:string;
-    username: string ;
+    advertUsername: string ;
     email: string;
     phoneNumber: string ;
     isAdvertCreator: boolean;

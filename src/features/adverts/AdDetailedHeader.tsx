@@ -8,30 +8,30 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 import { IProfile } from '../../app/models/profiles/profile';
 
 
-const adImageStyle = {
-  filter: 'brightness(30%)'
-};
+// const adImageStyle = {
+//   filter: 'brightness(30%)'
+// };
 
-const adImageTextStyle = {
-  position: 'absolute',
-  bottom: '5%',
-  left: '5%',
-  width: '100%',
-  height: 'auto',
-  color: 'white'
-};
+// const adImageTextStyle = {
+//   position: 'absolute',
+//   bottom: '5%',
+//   left: '5%',
+//   width: '100%',
+//   height: 'auto',
+//   color: 'white'
+// };
 
-const AdDetailedHeader: React.FC<{ ad: IAdvert,profile:IProfile }> = ({
-ad,profile
-}) => {
-  const advertiser = ad.advertiser;
+
+const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({
+ad}) => {
+  
   const rootStore = useContext(RootStoreContext);
   const {  loading } = rootStore.adStore;
   return (
     <Segment.Group>
       <Segment basic attached='top' style={{ padding: '0' }}>
         
-        <Segment style={adImageTextStyle} basic>
+        <Segment  basic>
           <Item.Group>
             <Item>
               <Item.Content>
@@ -43,9 +43,9 @@ ad,profile
                 <p>{format(ad.date, 'eeee do MMMM')}</p>
                 <p>
                   Advertised by{' '}
-                  <Link to={`/profile/${advertiser.username}`}>
-                    <strong>{advertiser.username}</strong>
-                  </Link>
+                  <Link to={`/profile/${ad.advertiserUsername}`}> 
+                     <strong>{ad.advertiserUsername}</strong> 
+                   </Link>
                 </p>
               </Item.Content>
             </Item>
@@ -62,7 +62,7 @@ ad,profile
           >
             Manage Advert
           </Button>
-        ) :  profile.isUserGarage ?(
+        ) :  !ad.isContactAlowed ?(
           <Button loading={loading} >
             Send private message
           </Button>

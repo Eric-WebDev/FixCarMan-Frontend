@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Tab, Grid, Header, Card, Image, TabProps } from 'semantic-ui-react';
+import { Tab, Grid, Header, Card, Image, TabProps, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../app/stores/rootStore';
@@ -57,6 +57,7 @@ const ProfileEvents = () => {
             onTabChange={(e, data) => handleTabChange(e, data)}
           />
           <br />
+          
           <Card.Group itemsPerRow={4}>
             {userAdverts.map((advert: IUserAdvert) => (
               <Card
@@ -64,10 +65,7 @@ const ProfileEvents = () => {
                 to={`/adverts/${advert.id}`}
                 key={advert.id}
               >
-                {/* <Image
-                  src={`/assets/categoryImages/${activity.category}.jpg`}
-                  style={{ minHeight: 100, objectFit: 'cover' }}
-                /> */}
+               
                 <Card.Content>
                   <Card.Header textAlign='center'>{advert.title}</Card.Header>
                   <Card.Meta textAlign='center'>

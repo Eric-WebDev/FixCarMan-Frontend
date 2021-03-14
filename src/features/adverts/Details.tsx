@@ -6,6 +6,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 import LoadingComponent from '../../app/layout/Loadding';
 // import AdDetailedHeader from './AdDetailedHeader';
 import AdDetailedInfo from './AdDetailedInfo';
+import AdDetailedHeader from './AdDetailedHeader';
 
 
 interface DetailParams {
@@ -30,7 +31,7 @@ const AdDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   return (
     <Grid>
       <Grid.Column width={12}>
-        {/* <AdDetailedHeader ad={ad} /> */}
+        <AdDetailedHeader ad={ad} />
         <AdDetailedInfo ad={ad} />
       </Grid.Column>
   
