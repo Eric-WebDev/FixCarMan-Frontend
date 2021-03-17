@@ -16,7 +16,7 @@ const AdvertFilters = () => {
           onClick={() => setPredicate('all', 'true')}
           color={'blue'}
           name={'all'}
-          content={'All Advertss'}
+          content={'All Adverts'}
         />
   
         <Menu.Item
@@ -27,16 +27,16 @@ const AdvertFilters = () => {
           content={"My adverts"}
         />
       </Menu>
-      <Header
+      {/* <Header
         icon={'calendar'}
         attached
         color={'blue'}
         content={'Select Date'}
-      />
-      <Calendar
+      /> */}
+      {/* <Calendar
         onChange={date => setPredicate('startDate', date!)}
         value={predicate.get('startDate') || new Date()}
-      />
+      /> */}
     </Fragment>
   );
 };

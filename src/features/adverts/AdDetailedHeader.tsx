@@ -41,12 +41,12 @@ ad}) => {
                   style={{ color: 'white' }}
                 />
                 <p>{format(ad.date, 'eeee do MMMM')}</p>
-                <p>
+                {/* <p>
                   Advertised by{' '}
                   <Link to={`/profile/${ad.advertiserUsername}`}> 
                      <strong>{ad.advertiserUsername}</strong> 
                    </Link>
-                </p>
+                </p> */}
               </Item.Content>
             </Item>
           </Item.Group>

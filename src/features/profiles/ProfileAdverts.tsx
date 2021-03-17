@@ -7,7 +7,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 import { IUserAdvert } from '../../app/models/profiles/profile';
 
 const panes = [
-  { menuItem: 'Active', pane: { key: 'factive' } },
+  { menuItem: 'Active', pane: { key: 'active' } },
   { menuItem: 'Expired', pane: { key: 'expired' } },
   { menuItem: 'Created', pane: { key: 'created' } }
 ];

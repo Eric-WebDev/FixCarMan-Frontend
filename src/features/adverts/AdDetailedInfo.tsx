@@ -33,7 +33,7 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
           </Grid.Column>
           <Grid.Column width={11}>
             <span>
-              {ad.description}, {ad.city}
+              {ad.city}
             </span>
           </Grid.Column>
         </Grid>

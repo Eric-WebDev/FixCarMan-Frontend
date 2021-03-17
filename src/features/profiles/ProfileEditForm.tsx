@@ -26,12 +26,6 @@ const ProfileEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
       render={({ handleSubmit, invalid, pristine, submitting }) => (
         <Form onSubmit={handleSubmit} error>
           <Field
-            name='username'
-            component={TextInput}
-            placeholder='User Name'
-            value={profile!.username}
-          />
-          <Field
             name='firstName'
             component={TextInput}
             placeholder='First Name'
