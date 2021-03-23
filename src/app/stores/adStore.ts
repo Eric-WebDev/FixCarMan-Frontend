@@ -39,19 +39,19 @@ export default class AdStore {
   }
 }
 
-@computed get axiosParams() {
-  const params = new URLSearchParams();
-  params.append('limit', String(LIMIT));
-  params.append('offset', `${this.page ? this.page * LIMIT : 0}`);
-  this.predicate.forEach((value, key) => {
-    if (key === 'startDate') {
-      params.append(key, value.toISOString())
-    } else {
-      params.append(key, value)
-    }
-  })
-  return params;
-}
+// @computed get axiosParams() {
+//   const params = new URLSearchParams();
+//   params.append('limit', String(LIMIT));
+//   params.append('offset', `${this.page ? this.page * LIMIT : 0}`);
+//   this.predicate.forEach((value, key) => {
+//     if (key === 'startDate') {
+//       params.append(key, value.toISOString())
+//     } else {
+//       params.append(key, value)
+//     }
+//   })
+//   return params;
+// }
 
 @computed get totalPages() {
   return Math.ceil(this.adCount / LIMIT);
@@ -87,7 +87,7 @@ groupAdsByDate(ads: IAdvert[]) {
 @action loadAds = async () => {
   this.loadingInitial = true;
   try {
-    const adsEnvelope = await agent.Adverts.list(this.axiosParams);
+    const adsEnvelope = await agent.Adverts.list();
     const {adverts, advertCount} = adsEnvelope;
     runInAction('loading ads', () => {
       adverts.forEach(ad => {
@@ -158,9 +158,10 @@ groupAdsByDate(ads: IAdvert[]) {
 
   @action editAd = async (ad: IAdvert) => {
     this.submitting = true;
+    const user = await agent.User.current();
     try {
       await agent.Adverts.update(ad);
-      ad.isAdvertCreator=true;
+      ad.advertiserUsername=;
       runInAction('editing ad', () => {
         this.adRegistry.set(ad.id, ad);
         this.ad = ad;

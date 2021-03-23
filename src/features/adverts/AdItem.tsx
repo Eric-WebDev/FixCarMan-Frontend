@@ -6,40 +6,9 @@ import { Link } from 'react-router-dom';
 
 
 const AdItem: React.FC<{ ad: IAdvert}> = ({ ad }) => {
-   const advertiser = ad.advertiser;
   return (
     <Segment.Group>
       <Segment>
-        <Item.Group>
-          <Item>
-            {/* <Item.Image
-              size='tiny'
-              circular
-              src={advertiser.image || '/assets/user.png'}
-              style={{ marginBottom: 3 }}
-            /> */}
-            <Item.Content>
-              <Item.Header as={Link} to={`/adverts/${ad.id}`}>
-                {ad.title}
-              </Item.Header>
-              <Item.Description>
-                Advertised by
-                <Link to={`/profile/${ad.advertiserUsername}`}> {ad.advertiserUsername}</Link>
-              </Item.Description>
-              {ad.isAdvertCreator && (
-                <Item.Description>
-                  <Label
-                    basic
-                    color='green'
-                    content='You created this advert'
-                  />
-                </Item.Description>
-              )}
-            </Item.Content>
-          </Item>
-        </Item.Group>
-     
-
         <Item.Group>
           <Item>          
             <Item.Content>
@@ -50,28 +19,26 @@ const AdItem: React.FC<{ ad: IAdvert}> = ({ ad }) => {
               <Icon name='car' /> {ad?.carModel}
                 </Item.Meta>
               
-              <Item.Description>{ad?.description}</Item.Description>
+              {/* <Item.Description>{ad?.description}</Item.Description> */}
+              <Button
+          as={Link}
+          to={`/adverts/${ad.id}`}
+          floated='left'
+          content='More details'
+          color='blue'
+        />
             </Item.Content>
             <Item.Image size='small'  src='/assets/car.jpg' />
           </Item>
-          <Button color='blue' inverted >Contact me </Button>
         </Item.Group>
+        
       </Segment>
+      
       <Segment >    
         <Icon name='user' />{" "}{ad?.advertiserUsername}{" | "} 
         <Icon name='marker' /> {" "} {ad?.city}{" | "} 
         <Icon name='time' />{" "} {format(ad.date, 'MMMM do, yyyy')}{" "}
         </Segment>
-        <Segment clearing>
-        <span>{ad.description}</span>
-        <Button
-          as={Link}
-          to={`/adverts/${ad.id}`}
-          floated='right'
-          content='View'
-          color='blue'
-        />
-      </Segment>
         </Segment.Group>
   );
 };
