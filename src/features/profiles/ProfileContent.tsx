@@ -8,7 +8,7 @@ const panes = [
   { menuItem: 'About', render: () => <ProfileDescription /> },
   { menuItem: 'My Adverts', render: () => <ProfileAdverts/> },
   { menuItem: 'My Cars', render: () => <NotFound /> },
-  { menuItem: 'My Garages', render: () => <NotFound /> }
+  { menuItem: 'Messages', render: () => <NotFound /> }
 ];
 
 interface IProps {

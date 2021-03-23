@@ -5,7 +5,7 @@ import AdList from './AdList'
 import { RootStoreContext } from '../../app/stores/rootStore';
 import AdItemItemPlaceholder from './AdItemPlaceholder';
 import InfiniteScroll from 'react-infinite-scroller';
-import AdFilters from './AdFilters';
+
 const Dashboard: React.FC = () => {
 
   const rootStore = useContext(RootStoreContext);
@@ -29,8 +29,8 @@ const Dashboard: React.FC = () => {
   }, [loadAds]);
 
   return (
-    <Grid>
-    <Grid.Column width={10}>
+    <Grid >
+    <Grid.Column  width={10}>
       {loadingInitial && page === 0 ? (
         <AdItemItemPlaceholder />
       ) : (
@@ -45,7 +45,6 @@ const Dashboard: React.FC = () => {
       )}
     </Grid.Column>
     <Grid.Column width={6}>
-        <AdFilters />
       </Grid.Column>
       <Grid.Column width={10}>
         <Loader active={loadingNext} />

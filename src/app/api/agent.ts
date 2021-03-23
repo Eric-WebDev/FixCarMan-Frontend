@@ -76,8 +76,7 @@ const requests = {
 };
 
 const Adverts = {
-  list: (params: URLSearchParams): Promise<IAdvertsEnvelope> =>
-    axios.get('/adverts', {params: params}).then(responseBody),
+  list: (): Promise<IAdvertsEnvelope> => requests.get('/adverts'),
   details: (id: string) => requests.get(`/adverts/${id}`),
   create: (advert: IAdvert) => requests.post("/adverts", advert),
   update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),

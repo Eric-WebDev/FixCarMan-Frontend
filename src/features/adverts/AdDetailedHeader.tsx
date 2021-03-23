@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { IAdvert } from '../../app/models/advertsFixCar/adverts';
 import { RootStoreContext } from '../../app/stores/rootStore';
-import { IProfile } from '../../app/models/profiles/profile';
+import AdDetailedInfo from './AdDetailedInfo';
 
 
 // const adImageStyle = {
@@ -27,9 +27,10 @@ ad}) => {
   
   const rootStore = useContext(RootStoreContext);
   const {  loading } = rootStore.adStore;
+  const { user, isLoggedIn } = rootStore.userStore;
   return (
     <Segment.Group>
-      <Segment basic attached='top' style={{ padding: '0' }}>
+      <Segment attached='top' style={{ padding: '0' }}>
         
         <Segment  basic>
           <Item.Group>
@@ -38,22 +39,25 @@ ad}) => {
                 <Header
                   size='huge'
                   content={ad.title}
-                  style={{ color: 'white' }}
+                  style={{ color: 'green' }}
                 />
                 <p>{format(ad.date, 'eeee do MMMM')}</p>
-                {/* <p>
+                <p>
                   Advertised by{' '}
                   <Link to={`/profile/${ad.advertiserUsername}`}> 
                      <strong>{ad.advertiserUsername}</strong> 
                    </Link>
-                </p> */}
+                </p>
               </Item.Content>
             </Item>
           </Item.Group>
         </Segment>
+        
       </Segment>
+     
       <Segment clearing attached='bottom'>
-        {ad.isAdvertCreator ? (
+      <AdDetailedInfo ad={ad} />
+        {isLoggedIn && user?.username === ad.advertiserUsername  ? (
           <Button
             as={Link}
             to={`/manage/${ad.id}`}
@@ -62,14 +66,14 @@ ad}) => {
           >
             Manage Advert
           </Button>
-        ) :  !ad.isContactAlowed ?(
+        ) : ad.isAdvertCreator ?(
           <Button loading={loading} >
             Send private message
           </Button>
         ) : (
-          <Button loading={loading}  color='teal'>
-            Contact to fix 
-          </Button>
+          <Header centered>
+            Contact provided only for verified users 
+          </Header>
         )}
       </Segment>
     </Segment.Group>

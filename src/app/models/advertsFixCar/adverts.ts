@@ -3,16 +3,17 @@ export interface IAdvertsEnvelope {
     advertCount: number;
   }
 export interface IAdvert {
-    id: string;
-    title: string;
-    carModel: string;
-    description: string;
-    date: Date;
-    city: string;
-    isAdvertCreator?: boolean,
-    isContactAlowed?:boolean,
-    advertiser?: IAdvertiser;
     advertiserUsername?:string;
+    carModel: string;
+    city: string;
+    date: Date;
+    description?: string;
+    id: string; 
+    isAdvertCreator?: boolean,
+    title: string;
+    // isContactAlowed?:boolean,
+    // advertiser?: IAdvertiser;
+     
 }
 
 export interface IAdvertFormValues extends Partial<IAdvert> {
@@ -41,9 +42,9 @@ export class AdvertFormValues implements IAdvertFormValues {
 
 export interface IAdvertiser {
     advertiserId: number ;
-    image:string;
-    advertiserUsername: string ;
-    email: string;
-    phoneNumber: string ;
+    image?:string;
+    advertiserUsername?: string ;
+    email?: string;
+    phoneNumber?: string ;
     isAdvertCreator: boolean;
 }

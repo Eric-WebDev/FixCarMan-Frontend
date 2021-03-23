@@ -6,7 +6,19 @@ import { IAdvert } from '../../app/models/advertsFixCar/adverts';
 const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
   return (
     <Segment.Group>
-      <Segment attached='top'>
+
+       <Segment attached='top'>
+        <Grid>
+          <Grid.Column width={1}>
+            <Icon size='large' color='teal' name='car' />
+          </Grid.Column>
+          <Grid.Column width={15}>
+            <p>{ad.carModel}</p>
+          </Grid.Column>
+        </Grid>
+      </Segment>
+
+      <Segment attached>
         <Grid>
           <Grid.Column width={1}>
             <Icon size='large' color='teal' name='info' />
@@ -16,6 +28,7 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
           </Grid.Column>
         </Grid>
       </Segment>
+
       <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
@@ -26,6 +39,7 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
           </Grid.Column>
         </Grid>
       </Segment>
+
       <Segment attached>
         <Grid verticalAlign='middle'>
           <Grid.Column width={1}>
@@ -38,6 +52,7 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
           </Grid.Column>
         </Grid>
       </Segment>
+
     </Segment.Group>
   );
 };

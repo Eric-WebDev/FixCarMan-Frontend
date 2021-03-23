@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoadingComponent from '../../app/layout/Loadding';
-// import AdDetailedHeader from './AdDetailedHeader';
 import AdDetailedInfo from './AdDetailedInfo';
 import AdDetailedHeader from './AdDetailedHeader';
 
@@ -32,7 +31,7 @@ const AdDetails: React.FC<RouteComponentProps<DetailParams>> = ({
     <Grid>
       <Grid.Column width={12}>
         <AdDetailedHeader ad={ad} />
-        <AdDetailedInfo ad={ad} />
+        
       </Grid.Column>
   
     </Grid>

@@ -147,8 +147,6 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   />
 
                 </Form.Group>
-
-
                 <Button
                   loading={submitting}
                   disabled={loading || invalid || pristine}
