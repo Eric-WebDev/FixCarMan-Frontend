@@ -30,10 +30,8 @@ const AdDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   return (
     <Grid>
       <Grid.Column width={12}>
-        <AdDetailedHeader ad={ad} />
-        
-      </Grid.Column>
-  
+        <AdDetailedHeader ad={ad} />       
+      </Grid.Column> 
     </Grid>
   );
 };

@@ -5,6 +5,7 @@ import CommonStore from './commonStore';
 import ModalStore from './modalStore';
 import ProfileStore from './profileStore';
 import AdStore from './adStore';
+import VehicleStore from './vehicleStore';
 
 configure({enforceActions: 'always'});
 
@@ -14,6 +15,7 @@ export class RootStore {
     modalStore: ModalStore;
     profileStore: ProfileStore;
     adStore: AdStore;
+    vehicleStore:VehicleStore;
 
     constructor() {
         this.userStore = new UserStore(this);
@@ -21,6 +23,7 @@ export class RootStore {
         this.modalStore = new ModalStore(this);
         this.profileStore = new ProfileStore(this);
         this.adStore=new AdStore(this);
+        this.vehicleStore = new VehicleStore(this);
     }
 }
 

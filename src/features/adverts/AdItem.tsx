@@ -30,10 +30,8 @@ const AdItem: React.FC<{ ad: IAdvert}> = ({ ad }) => {
             </Item.Content>
             <Item.Image size='small'  src='/assets/car.jpg' />
           </Item>
-        </Item.Group>
-        
-      </Segment>
-      
+        </Item.Group>      
+      </Segment>     
       <Segment >    
         <Icon name='user' />{" "}{ad?.advertiserUsername}{" | "} 
         <Icon name='marker' /> {" "} {ad?.city}{" | "} 

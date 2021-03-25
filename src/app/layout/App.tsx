@@ -15,6 +15,7 @@ import ModalContainer from "../Common/modals/ModalContainer";
 import PrivateRoute from "./PrivateRoute";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import Details from "../../features/adverts/Details";
+import UserVehicles from "../../features/profiles/UserVehicles";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -50,6 +51,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                   component={AdForm}
                 />
                <PrivateRoute path='/profiles/:username' component={ProfilePage} />
+               <PrivateRoute path='/vehicles/:id' component={UserVehicles} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

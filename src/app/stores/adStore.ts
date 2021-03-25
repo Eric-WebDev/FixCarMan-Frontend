@@ -158,10 +158,9 @@ groupAdsByDate(ads: IAdvert[]) {
 
   @action editAd = async (ad: IAdvert) => {
     this.submitting = true;
-    const user = await agent.User.current();
     try {
       await agent.Adverts.update(ad);
-      ad.advertiserUsername=;
+      ad.isAdvertCreator=true;
       runInAction('editing ad', () => {
         this.adRegistry.set(ad.id, ad);
         this.ad = ad;

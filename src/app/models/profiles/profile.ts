@@ -1,4 +1,5 @@
 export interface IProfile {
+    id:string,
     username:string;
     firstName?: string;
     lastName?: string;
@@ -25,4 +26,13 @@ export interface IUserAdvert {
     title: string;
     description: string;
     date: Date;
+  }
+
+  export interface IVehicle{
+    id :string;
+    registrationNumber : string;
+    description : string;
+    registrationYear : string;
+    carMake : string;
+    carModel : string;
   }

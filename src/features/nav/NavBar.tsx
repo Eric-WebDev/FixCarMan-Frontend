@@ -6,7 +6,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
 
  const NavBar:React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { user, logout, } = rootStore.userStore;
+  const { user, logout} = rootStore.userStore;
   
   return (
     <Menu stackable pointing size="large"  >
@@ -33,6 +33,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
           <Menu.Item position='right'>
             {/* <image avatar spaced='right' src={user.image || '/assets/user.png'} /> */}
             <Dropdown pointing='top left' text={user.username}>
+           
               <Dropdown.Menu>
                 <Dropdown.Item
                   as={Link}
@@ -40,6 +41,13 @@ import { RootStoreContext } from "../../app/stores/rootStore";
                   text='My profile'
                   icon='user'
                 />
+                 <Dropdown.Item
+                  as={Link}
+                  to={`/vehicles/${user.username}`}
+                  text='My Cars'
+                  icon='car'
+                />
+                
                 <Dropdown.Item onClick={logout} text='Logout' icon='power' />
               </Dropdown.Menu>
             </Dropdown>

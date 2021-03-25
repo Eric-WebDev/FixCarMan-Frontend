@@ -2,6 +2,7 @@ import React from 'react';
 import { Segment, Grid, Icon } from 'semantic-ui-react';
 import {format} from 'date-fns';
 import { IAdvert } from '../../app/models/advertsFixCar/adverts';
+import AdPhotos from './AdPhotos';
 
 const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
   return (
@@ -52,6 +53,7 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
           </Grid.Column>
         </Grid>
       </Segment>
+    <AdPhotos/>
 
     </Segment.Group>
   );

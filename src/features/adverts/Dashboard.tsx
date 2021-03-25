@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Advertisement, Grid, Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import AdList from './AdList'
 import { RootStoreContext } from '../../app/stores/rootStore';
@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Grid >
-    <Grid.Column  width={10}>
+    <Grid.Column  width={12}>
       {loadingInitial && page === 0 ? (
         <AdItemItemPlaceholder />
       ) : (
@@ -44,11 +44,13 @@ const Dashboard: React.FC = () => {
         </InfiniteScroll>
       )}
     </Grid.Column>
-    <Grid.Column width={6}>
+    <Grid.Column width={3}>
+    <Advertisement unit='vertical rectangle' test='Advertisement placeholder' />
       </Grid.Column>
       <Grid.Column width={10}>
         <Loader active={loadingNext} />
       </Grid.Column>
+      
   </Grid>
   );
 };

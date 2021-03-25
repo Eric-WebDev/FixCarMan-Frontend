@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Tab, Grid, Header, Card, Image, TabProps, Button } from 'semantic-ui-react';
+import { Tab, Grid, Header, Card, Image, TabProps, Button, Divider, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { RootStoreContext } from '../../app/stores/rootStore';
@@ -9,11 +9,12 @@ import { IUserAdvert } from '../../app/models/profiles/profile';
 const panes = [
   { menuItem: 'Active', pane: { key: 'active' } },
   { menuItem: 'Expired', pane: { key: 'expired' } },
-  { menuItem: 'Created', pane: { key: 'created' } }
+  { menuItem: 'All', pane: { key: 'all' } }
 ];
 
 const ProfileEvents = () => {
   const rootStore = useContext(RootStoreContext);
+  
   const {
     loadUserAdverts,
     profile,
@@ -22,6 +23,7 @@ const ProfileEvents = () => {
   } = rootStore.profileStore!;
 
   useEffect(() => {
+    
     loadUserAdverts(profile!.username);
   }, [loadUserAdverts, profile]);
 
@@ -35,7 +37,7 @@ const ProfileEvents = () => {
         predicate = 'expired';
         break;
       case 2:
-        predicate = 'created';
+        predicate = 'all';
         break;
       default:
         predicate = 'active';
@@ -48,7 +50,12 @@ const ProfileEvents = () => {
     <Tab.Pane loading={loadingAdverts}>
       <Grid>
         <Grid.Column width={16}>
-          <Header floated='left' icon='calendar' content={'Adverts'} />
+        <Divider horizontal>
+            <Header>
+              <Icon name="adversal" />
+              My Adverts
+            </Header>
+          </Divider>
         </Grid.Column>
         <Grid.Column width={16}>
           <Tab

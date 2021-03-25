@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Tab, Grid, Header, Button } from 'semantic-ui-react';
+import { Tab, Grid, Header, Button, Divider, Icon } from 'semantic-ui-react';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import ProfileEditForm from './ProfileEditForm';
@@ -12,11 +12,12 @@ const ProfileDescription = () => {
     <Tab.Pane>
       <Grid>
         <Grid.Column width={16}>
-          <Header
-            floated='left'
-            icon='user'
-            content={` ${profile!.username}'s profile`}
-          />
+        <Divider horizontal>
+            <Header>
+              <Icon name="user" />
+              {profile!.username}'s profile
+            </Header>
+          </Divider>
           {isCurrentUser && (
             <Button
               floated='right'

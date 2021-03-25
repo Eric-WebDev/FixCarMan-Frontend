@@ -3,6 +3,7 @@ import { Tab } from 'semantic-ui-react';
 import NotFound from '../../app/layout/NotFound';
 import ProfileAdverts from './ProfileAdverts';
 import ProfileDescription from './ProfileDescription';
+import UserVehicles from './UserVehicles';
 
 const panes = [
   { menuItem: 'About', render: () => <ProfileDescription /> },
