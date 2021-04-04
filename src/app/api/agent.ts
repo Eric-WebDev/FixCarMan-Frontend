@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
 import { IAdvert, IAdvertsEnvelope } from "../models/advertsFixCar/adverts";
 import { IUser, IUserFormValues } from "../models/users/user";
-import { IProfile, IUserAdvert, IVehicle } from "../models/profiles/profile";
+import { IProfile, IUserAdvert, IVehicle, IVehicleFormValues } from "../models/profiles/profile";
 let history = createBrowserHistory();
 
 axios.defaults.baseURL = "http://localhost:5000/api";
@@ -97,14 +97,16 @@ const Profiles = {
 };
 
 const Vehicles = {
-  get: (id: string): Promise<IVehicle> => requests.get(`/vehicles/${id}`),
-  listVehicles: (id: string, predicate: string) =>
+  getVehicle: (id: string, predicate: string) =>
     requests.get(`/vehicles/${id}/?predicate=${predicate}`),
+  create: (vehicle: IVehicleFormValues) => requests.post("/vehicles", vehicle),
+  update: (vehicle: IVehicle) => requests.put(`/vehicles/${vehicle.id}`, vehicle),
+  delete: (vehicle: IVehicle) => requests.del(`/vehicles/${vehicle.id}`)
 };
 
 export default {
   Adverts,
   User,
   Profiles,
-  Vehicles,
+  Vehicles
 };

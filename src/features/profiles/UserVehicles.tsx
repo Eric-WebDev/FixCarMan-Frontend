@@ -1,34 +1,43 @@
-import React, { useEffect, useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import { Tab, Grid, Header, Card, Image, TabProps, Button, Divider, Icon } from 'semantic-ui-react';
-import { RootStoreContext } from '../../app/stores/rootStore';
-import {  IVehicle } from '../../app/models/profiles/profile';
-import { RouteComponentProps } from 'react-router-dom';
-
+import React, { useEffect, useContext, Fragment } from "react";
+import { observer } from "mobx-react-lite";
+import {
+  Tab,
+  Grid,
+  Header,
+  Card,
+  Image,
+  TabProps,
+  Button,
+  Divider,
+  Icon,
+  Item,
+  Label,
+  Table,
+} from "semantic-ui-react";
+import { RootStoreContext } from "../../app/stores/rootStore";
+import { IVehicle } from "../../app/models/profiles/profile";
+import { Link, RouteComponentProps } from "react-router-dom";
+import VehicleForm from "./VehicleForm";
+const src = "/assets/car.png";
 interface RouteParams {
   id: string;
 }
 
 interface IProps extends RouteComponentProps<RouteParams> {}
-const panes = [
-  { menuItem: 'Vehicles', pane: { key: 'vehicles' } }
+// const panes = [{ menuItem: "Vehicles", pane: { key: "vehicles" } }];
 
-];
-
-const UserVehicle:React.FC<IProps> = ({match}) => {
-  
+const UserVehicle: React.FC<IProps> = ({ match }) => {
   const rootStore = useContext(RootStoreContext);
   const {
-   loadUserVehicles,
-   vehicle,
-   loadingVehicles,
-   userVehicles   
+    loadUserVehicles,
+    vehicle,
+    loadingVehicles,
+    userVehicles,
   } = rootStore.vehicleStore;
-
 
   useEffect(() => {
     loadUserVehicles(match.params.id);
-  }, [loadUserVehicles,vehicle]);
+  }, [loadUserVehicles, vehicle]);
 
   const handleTabChange = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -37,26 +46,27 @@ const UserVehicle:React.FC<IProps> = ({match}) => {
     let predicate;
     switch (data.activeIndex) {
       case 1:
-        predicate = 'vehicles';
+        predicate = "vehicles";
         break;
       default:
-        predicate = 'vehicles';
+        predicate = "vehicles";
         break;
     }
-    loadUserVehicles(match.params.id,predicate);
+    loadUserVehicles(match.params.id, predicate);
   };
+  interface IProps extends RouteComponentProps<RouteParams> {}
+  const panes = [{ menuItem: "My car", pane: { key: "vehicles" } }];
 
   return (
     <Tab.Pane loading={loadingVehicles}>
       <Grid>
         <Grid.Column width={16}>
-        <Divider horizontal>
-          <Header>
-
-             <Icon name="car" />
-             Vehicles
+          <Divider horizontal>
+            <Header>
+              <Icon name="car" />
+              Vehicles
             </Header>
-            </Divider>
+          </Divider>
         </Grid.Column>
         <Grid.Column width={16}>
           <Tab
@@ -65,21 +75,104 @@ const UserVehicle:React.FC<IProps> = ({match}) => {
             onTabChange={(e, data) => handleTabChange(e, data)}
           />
           <br />
-          
-          <Card.Group itemsPerRow={4}>
-            {userVehicles.map((vehicle: IVehicle) => (
-              <Card
-                // as={Link}
-                // to={`/vehicles/${vehicle.id}`}
-                // key={vehicle.id}
+
+          <Card.Group>
+            {userVehicles !== null ? (
+              <Button
+                as={Link}
+                to={`/createVehicle`}
+                color="green"
+                floated="right"
               >
-               
-                <Card.Content>
-                  <Card.Header textAlign='center'>{vehicle.carMake}</Card.Header>
-                  <Card.Meta textAlign='center'>
-                    {vehicle.carModel}
-                  </Card.Meta>
-                </Card.Content>
+                Ad car details
+              </Button>
+            ) : userVehicles ? (
+              <Button>Send private message</Button>
+            ) : (
+              <Header centered>Contact provided only for verified users</Header>
+            )}
+
+            {userVehicles.map((vehicle: IVehicle) => (
+              <Card fluid color="green">
+                <Item.Content>
+                  <Item.Header as="a">
+                    {vehicle.carMake} {vehicle.carModel}{" "}
+                  </Item.Header>
+                  <Item.Meta>
+                    <span className="cinema">{vehicle.registrationYear}</span>
+                  </Item.Meta>
+
+                  <Table celled compact definition>
+                    <Table.Body>
+                      <Table.Row>
+                        <Table.Cell>Registration Number</Table.Cell>
+                        <Table.Cell>{vehicle.registrationNumber}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Transmission</Table.Cell>
+                        <Table.Cell>{vehicle.transmission}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Body Style</Table.Cell>
+                        <Table.Cell>{vehicle.bodyStyle}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Fuel Type</Table.Cell>
+                        <Table.Cell>{vehicle.fuelType}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Number of seats</Table.Cell>
+                        <Table.Cell>{vehicle.numberOfSeats}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Number of doors</Table.Cell>
+                        <Table.Cell>{vehicle.numberOfDoors}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Body Style</Table.Cell>
+                        <Table.Cell>{vehicle.bodyStyle}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Engine Size</Table.Cell>
+                        <Table.Cell>{vehicle.engineSize}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Vin number</Table.Cell>
+                        <Table.Cell>{vehicle.vin}</Table.Cell>
+                      </Table.Row>
+
+                      <Table.Row>
+                        <Table.Cell>Car services details</Table.Cell>
+                        <Table.Cell></Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+
+                    <Table.Footer fullWidth>
+                      <Table.Row>
+                        <Table.HeaderCell colSpan="4">
+                          <Button floated="right" color="green">
+                            Edit details
+                          </Button>
+                        </Table.HeaderCell>
+                      </Table.Row>
+                    </Table.Footer>
+                  </Table>
+
+                  <Divider clearing />
+                  <Card.Group itemsPerRow={3}>
+                    <Card raised image={src} />
+                    <Card raised image={src} />
+                    <Card raised image={src} />
+                  </Card.Group>
+                </Item.Content>
               </Card>
             ))}
           </Card.Group>
@@ -90,5 +183,3 @@ const UserVehicle:React.FC<IProps> = ({match}) => {
 };
 
 export default observer(UserVehicle);
-
-

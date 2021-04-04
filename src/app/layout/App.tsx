@@ -16,6 +16,7 @@ import PrivateRoute from "./PrivateRoute";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import Details from "../../features/adverts/Details";
 import UserVehicles from "../../features/profiles/UserVehicles";
+import VehicleForm from "../../features/profiles/VehicleForm";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -52,6 +53,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 />
                <PrivateRoute path='/profiles/:username' component={ProfilePage} />
                <PrivateRoute path='/vehicles/:id' component={UserVehicles} />
+               <PrivateRoute
+                  key={location.key}
+                  path={["/createVehicle", "/manage/:id"]}
+                  component={VehicleForm}
+                />
                 <Route component={NotFound} />
               </Switch>
             </Container>

@@ -110,9 +110,7 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   rows={3}
                   value={ad.description}
                   component={TextAreaInput}
-                />
-             
-                
+                />               
                 <Field
                   component={TextInput}
                   name='city'

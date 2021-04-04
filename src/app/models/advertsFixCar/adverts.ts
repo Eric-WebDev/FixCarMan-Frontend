@@ -1,7 +1,8 @@
 export interface IAdvertsEnvelope {
     adverts: IAdvert[];
     advertCount: number;
-  }
+}
+
 export interface IAdvert {
     advertiserUsername?:string;
     carModel: string;
@@ -13,12 +14,10 @@ export interface IAdvert {
     title: string;
     // isContactAlowed?:boolean,
     // advertiser?: IAdvertiser;
-     
 }
 
 export interface IAdvertFormValues extends Partial<IAdvert> {
     time?: Date;
-
 }
 
 export class AdvertFormValues implements IAdvertFormValues {

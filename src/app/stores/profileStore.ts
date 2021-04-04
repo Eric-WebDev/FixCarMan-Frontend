@@ -2,7 +2,7 @@ import { RootStore } from './rootStore';
 import { observable, action, runInAction, computed, reaction } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { IPhoto, IProfile, IUserAdvert } from '../models/profiles/profile';
+import { IPhoto, IProfile, IUserAdvert, IVehicle } from '../models/profiles/profile';
 
 export default class ProfileStore {
   rootStore: RootStore;
@@ -12,9 +12,11 @@ export default class ProfileStore {
 
   @observable profile: IProfile | null = null;
   @observable loadingProfile = true;
+  @observable loadingVehicles = true;
   @observable uploadingPhoto = false;
   @observable loading = false;
   @observable activeTab: number = 0;
+  @observable userVehicles: IVehicle[] = [];
   @observable userAdverts: IUserAdvert[] = [];
   @observable loadingAdverts = false;
 
@@ -90,4 +92,5 @@ export default class ProfileStore {
       toast.error('Problem updating profile');
     }
   };
+
 };
