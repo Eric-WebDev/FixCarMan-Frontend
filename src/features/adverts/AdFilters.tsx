@@ -27,17 +27,7 @@ const AdvertFilters = () => {
           content={"My adverts"}
         />
       </Menu>
-      {/* <Header
-        icon={'calendar'}
-        attached
-        color={'blue'}
-        content={'Select Date'}
-      /> */}
-      {/* <Calendar
-        onChange={date => setPredicate('startDate', date!)}
-        value={predicate.get('startDate') || new Date()}
-      /> */}
-    </Fragment>
+     </Fragment>
   );
 };
 

@@ -20,7 +20,7 @@ export default class VehicleStore {
   @observable userVehicles: IVehicle[] = [];
   @observable loadingVehicles = false;
   @observable submitting = false;
-  @observable adRegistry = new Map();
+  @observable vehicleRegistry = new Map();
 
   @action loadUserVehicles = async (id: string, predicate?: string) => {
     this.loadingVehicles = true;
@@ -41,33 +41,34 @@ export default class VehicleStore {
   };
 
   @action createVehicle = async (vehicle: IVehicle) => {
+    this.submitting = true;
+    const user = await agent.User.current();
     try {
       await agent.Vehicles.create(vehicle);
-      // vehicle.id == this.rootStore.userStore.user!.id
       runInAction(() => {
-        this.vehicle=vehicle;
-        //  this.adRegistry.set(vehicle.id, vehicle);
+        this.vehicle = vehicle;
+        this.submitting = false;
       });
+      history.push(`/vehicles/${user.username}`);
     } catch (error) {
-      toast.error('Problem creating profile');
+      toast.error("Problem creating vehicle");
+      this.submitting = false;
     }
   };
-
-  // @action createVehicle = async (vehicle: IVehicle) => {
-  //   this.submitting = true;
-  //   try {
-  //     await agent.Vehicles.create(vehicle);
-  //     runInAction("create vehicle", () => {
-  //       this.adRegistry.set(vehicle.id, vehicle);
-  //       this.submitting = false;
-  //     });
-  //     history.push(`/vehicles`);
-  //   } catch (error) {
-  //     runInAction("create vehicle error", () => {
-  //       this.submitting = false;
-  //     });
-  //     toast.error("Problem submitting data");
-  //     console.log(error.response);
-  //   }
-  // };
+ 
+  @action editVehicle = async (vehicle: IVehicle) => {
+    this.submitting = true;
+    const user = await agent.User.current();
+    try {
+      await agent.Vehicles.update(vehicle);
+      runInAction(() => {
+        this.vehicle = vehicle;
+        this.submitting = false;
+      });
+      history.push(`/vehicles/${user.username}`);
+    } catch (error) {
+      toast.error("Problem editing vehicle data");
+      this.submitting = false;
+    }
+  };
 }

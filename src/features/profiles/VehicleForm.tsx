@@ -11,15 +11,14 @@ import {
   composeValidators,
   hasLengthGreaterThan,
 } from "revalidate";
-import { AdvertFormValues } from "../../app/models/advertsFixCar/adverts";
-import { combineDateAndTime } from "../../app/Common/util/util";
 import TextInput from "../../app/Common/form/TextInput";
 import TextAreaInput from "../../app/Common/form/TextAreaInput";
-import DateInput from "../../app/Common/form/DateInput";
 import { RootStoreContext } from "../../app/stores/rootStore";
-import { IVehicleFormValues } from "../../app/models/profiles/profile";
-import { FORM_ERROR } from "final-form";
 
+import { configure } from "mobx";
+configure({
+  enforceActions: "never",
+})
 const validate = combineValidators({
   //   registration: isRequired({ message: 'car registration is required' }),
   carModel: isRequired("Car model"),
@@ -30,7 +29,7 @@ const validate = combineValidators({
   //     })
   //   )(),
   carMake: isRequired("car Make"),
-  //   vin: isRequired('Vin is required'),
+  vin: isRequired('Vin is required'),
   //time: isRequired('Time')
   // advertiserName
   // email
@@ -45,47 +44,27 @@ const VehicleForm = () => {
   const rootStore = useContext(RootStoreContext);
   const {
     createVehicle,
+    editVehicle,
     submitting,
-    loadUserVehicles,
     vehicle
   } = rootStore.vehicleStore;
 
-  // const [vehicle] = useState(new IVehicleFormValues());
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (match.params.id) {
-  //     setLoading(true);
-  //     loadUserVehicles(match.params.id)
-  //       .finally(() => setLoading(false));
-  //   }
-  // }, [loadUserVehicles, match.params.id]);
-
-  // const handleFinalFormSubmit = (values: any) => {
-
-  //   if (vehicle.id) {
-  //     let newVehicle = {
-  //      ...vehicle,
-
-  //    };
-  //     createVehicle(newVehicle);
-  //   } else {
-  //   //   editVehicle(vehicle);
-  //   }
-  // };
-
+  const handleFinalFormSubmit = (values: any) => { 
+    if (!values.id) {      
+      createVehicle(values);
+    } else {
+      editVehicle(values);
+    }
+  };
   return (
     <Grid>
       <Grid.Column>
         <Segment clearing>
           <FinalForm
+          initialValues={vehicle}  
             validate={validate}
-            // initialValues={vehicle}
-            onSubmit={(values: IVehicleFormValues) =>
-              createVehicle(values).catch((error) => ({
-                [FORM_ERROR]: error,
-              }))
-            }
+                     
+            onSubmit={handleFinalFormSubmit}
             render={({ handleSubmit, invalid, pristine }) => (
               <Form onSubmit={handleSubmit}>
                 <Field
@@ -140,33 +119,33 @@ const VehicleForm = () => {
                   value={vehicle?.fuelType}
                   component={TextInput}
                 />
-                {/* <Field
+                <Field
                   name="numberOfSeats"
                   placeholder="Number Of Seats"
                   value={vehicle?.numberOfSeats}
                   component={TextInput}
-                /> */}
+                />
 
-                {/* <Field
+                <Field
                   name="numberOfDoors"
                   placeholder="Number Of Doors"
                   value={vehicle?.numberOfDoors}
                   component={TextInput}
-                /> */}
-                {/* <Field
+                />
+                <Field
                   name="engineSize"
                   placeholder="Engine Size"
                   value={vehicle?.engineSize}
                   component={TextInput}
-                /> */}
-                  {/* <Field
+                />
+                <Field
                   name="vin"
                   placeholder="Vin number"
                   value={vehicle?.vin}
                   rows={3}
                   component={TextInput}
-                /> */}
-                 {/* <Field
+                />
+                {/* <Field
                   name="nctResults"
                   placeholder="NCT Results"
                   value={vehicle?.nctResults}
@@ -179,6 +158,7 @@ const VehicleForm = () => {
                   positive
                   type="submit"
                   content="Submit"
+                
                 />
                 {/* <Button
                   onClick={

@@ -100,7 +100,7 @@ const Vehicles = {
   getVehicle: (id: string, predicate: string) =>
     requests.get(`/vehicles/${id}/?predicate=${predicate}`),
   create: (vehicle: IVehicleFormValues) => requests.post("/vehicles", vehicle),
-  update: (vehicle: IVehicle) => requests.put(`/vehicles/${vehicle.id}`, vehicle),
+  update: (vehicle: IVehicleFormValues) => requests.put(`/vehicles/${vehicle.id}`, vehicle),
   delete: (vehicle: IVehicle) => requests.del(`/vehicles/${vehicle.id}`)
 };
 
