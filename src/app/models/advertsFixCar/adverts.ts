@@ -5,6 +5,7 @@ export interface IAdvertsEnvelope {
 
 export interface IAdvert {
     advertiserUsername?:string;
+    advertiserEmail?:string ;
     carModel: string;
     city: string;
     date: Date;
