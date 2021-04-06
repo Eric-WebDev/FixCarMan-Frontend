@@ -1,27 +1,32 @@
-import React, { useContext } from 'react';
-import { Form as FinalForm, Field } from 'react-final-form';
-import { Form, Button, Header } from 'semantic-ui-react';
-import { RootStoreContext } from '../../app/stores/rootStore';
-import { FORM_ERROR } from 'final-form';
-import { combineValidators, isRequired } from 'revalidate';
-import { IUserFormValues } from '../../app/models/users/user';
-import ErrorMessage from '../../app/Common/form/ErrorMessage';
-import TextInput from '../../app/Common/form/TextInput';
-
+import React, { useContext, useState } from "react";
+import { Form as FinalForm, Field } from "react-final-form";
+import { Form, Button, Header, Radio } from "semantic-ui-react";
+import { RootStoreContext } from "../../app/stores/rootStore";
+import { FORM_ERROR } from "final-form";
+import { combineValidators, isRequired } from "revalidate";
+import { IUserFormValues } from "../../app/models/users/user";
+import ErrorMessage from "../../app/Common/form/ErrorMessage";
+import TextInput from "../../app/Common/form/TextInput";
+import SelectInput from "../../app/Common/form/SelectInput";
+export const typeProfile = [
+  { key: "garage", text: "Garage", value: "garage" },
+  { key: "user", text: "User", value: "user" },
+];
 const validate = combineValidators({
-  username: isRequired('Username'),
-  email: isRequired('Email'),
-  password: isRequired('Password')
+  username: isRequired("Username"),
+  email: isRequired("Email"),
+  password: isRequired("Password"),
 });
 
 const RegisterForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { register } = rootStore.userStore;
+  const { register, user } = rootStore.userStore;
+  const [garage, setGarage] = useState(true);
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>
-        register(values).catch(error => ({
-          [FORM_ERROR]: error
+        register(values).catch((error) => ({
+          [FORM_ERROR]: error,
         }))
       }
       validate={validate}
@@ -31,33 +36,33 @@ const RegisterForm = () => {
         submitError,
         invalid,
         pristine,
-        dirtySinceLastSubmit
+        dirtySinceLastSubmit,
       }) => (
         <Form onSubmit={handleSubmit} error>
-          <Header
-            as='h2'
-            content='Sign up'
-            color='blue'
-            textAlign='center'
-          />
-          <Field name='username' component={TextInput} placeholder='Username' />
-          <Field name='email' component={TextInput} placeholder='Email' />
+          <Header as="h2" content="Sign up" color="blue" textAlign="center" />
+          <Field name="username" component={TextInput} placeholder="Username" />
+          <Field name="email" component={TextInput} placeholder="Email" />
           <Field
-            name='password'
+            name="password"
             component={TextInput}
-            placeholder='Password'
-            type='password'
+            placeholder="Password"
+            type="password"
+          />
+          <Field
+            component={SelectInput}
+            options={typeProfile}
+            name="UserGarage"
+            placeholder="Profile type"
+            value={user?.UserGarage}
           />
           {submitError && !dirtySinceLastSubmit && (
-            <ErrorMessage
-              error={submitError}
-            />
+            <ErrorMessage error={submitError} />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
-            color='blue'
-            content='Register'
+            color="blue"
+            content="Register"
             fluid
           />
         </Form>

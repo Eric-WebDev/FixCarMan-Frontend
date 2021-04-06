@@ -40,4 +40,15 @@ body {
     font-size: 1.7em;
     font-weight: normal;
   }
-  
+.contactForm {
+  background-color:white; /* Green */
+  border: black;
+  color: white;
+  padding: 26px 56px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 21px;
+  margin: 12px 12px;
+  cursor: pointer;
+}

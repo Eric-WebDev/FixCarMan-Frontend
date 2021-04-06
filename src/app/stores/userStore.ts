@@ -15,7 +15,8 @@ export default class UserStore {
   @computed get isLoggedIn() {
     return !!this.user;
   }
-
+ 
+  
   @action login = async (values: IUserFormValues) => {
     try {
       const user = await agent.User.login(values);
@@ -35,6 +36,7 @@ export default class UserStore {
       const user = await agent.User.register(values);
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
+      console.log(values)
       history.push('/')
     } catch (error) {
       throw error;

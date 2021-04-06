@@ -11,7 +11,7 @@ export interface IProfile {
   city: string;
   county: string;
   zipCode: string;
-  isUserGarage: boolean;
+  UserGarage: string;
   advertId: string;
   image: string;
   photos: IPhoto[];

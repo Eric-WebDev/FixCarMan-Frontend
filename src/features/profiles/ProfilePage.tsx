@@ -40,7 +40,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
           isCurrentUser={isCurrentUser}
           loading={loading}
         />
-        <ProfileContent setActiveTab={setActiveTab} />
+        <ProfileContent setActiveTab={setActiveTab}  profile={profile!}/>
       </Grid.Column>
     </Grid>
   );
