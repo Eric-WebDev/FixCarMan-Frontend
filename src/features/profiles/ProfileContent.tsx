@@ -1,13 +1,8 @@
 import React, { useContext } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import NotFound from "../../app/layout/NotFound";
-import { IProfile } from "../../app/models/profiles/profile";
-import { RootStoreContext } from "../../app/stores/rootStore";
 import ProfileAdverts from "./ProfileAdverts";
 import ProfileDescription from "./ProfileDescription";
-
-// const rootStore = useContext(RootStoreContext);
-// const { user} = rootStore.userStore;
 
 const panes = [
   { menuItem: "About", render: () => <ProfileDescription /> },
@@ -22,13 +17,13 @@ const panes2 = [
 
 interface IProps {
   setActiveTab: (activeIndex: any) => void;
-  profile: IProfile;
+  isGarage: boolean;
 }
 
-const ProfileContent: React.FC<IProps> = ({ setActiveTab, profile }) => {
+const ProfileContent: React.FC<IProps> = ({ setActiveTab, isGarage }) => {
   return (
     <Container>
-      {profile?.UserGarage == "garage" && (
+      {isGarage && (
         <Tab
           menu={{ fluid: true, vertical: true }}
           menuPosition="right"
@@ -36,7 +31,7 @@ const ProfileContent: React.FC<IProps> = ({ setActiveTab, profile }) => {
           onTabChange={(e, data) => setActiveTab(data.activeIndex)}
         />
       )}
-      {profile?.UserGarage !== "garage" && (
+      {!isGarage && (
         <Tab
           menu={{ fluid: true, vertical: true }}
           menuPosition="right"

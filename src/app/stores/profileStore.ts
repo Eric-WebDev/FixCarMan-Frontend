@@ -1,8 +1,13 @@
-import { RootStore } from './rootStore';
-import { observable, action, runInAction, computed, reaction } from 'mobx';
-import agent from '../api/agent';
-import { toast } from 'react-toastify';
-import { IPhoto, IProfile, IUserAdvert, IVehicle } from '../models/profiles/profile';
+import { RootStore } from "./rootStore";
+import { observable, action, runInAction, computed, reaction } from "mobx";
+import agent from "../api/agent";
+import { toast } from "react-toastify";
+import {
+  IPhoto,
+  IProfile,
+  IUserAdvert,
+  IVehicle,
+} from "../models/profiles/profile";
 
 export default class ProfileStore {
   rootStore: RootStore;
@@ -27,24 +32,25 @@ export default class ProfileStore {
       return false;
     }
   }
+
   @action loadUserAdverts = async (username: string, predicate?: string) => {
     this.loadingAdverts = true;
     try {
-      const adverts = await agent.Profiles.listAdverts(username,predicate!);
+      const adverts = await agent.Profiles.listAdverts(username, predicate!);
       runInAction(() => {
         this.userAdverts = adverts;
         this.loadingAdverts = false;
-      })
+      });
     } catch (error) {
-      toast.error('Problem loading adverts')
+      toast.error("Problem loading adverts");
       runInAction(() => {
         this.loadingAdverts = false;
-      })
+      });
     }
-  }
+  };
   @action setActiveTab = (activeIndex: number) => {
-      this.activeTab = activeIndex;
-  } 
+    this.activeTab = activeIndex;
+  };
 
   @action loadProfile = async (username: string) => {
     this.loadingProfile = true;
@@ -65,15 +71,13 @@ export default class ProfileStore {
     try {
       await agent.Profiles.create(profile);
       runInAction(() => {
-        if (
-          profile.username !== this.rootStore.userStore.user!.username
-        ) {
+        if (profile.username !== this.rootStore.userStore.user!.username) {
           this.rootStore.userStore.user!.username = profile.username!;
         }
         this.profile = { ...this.profile!, ...profile };
       });
     } catch (error) {
-      toast.error('Problem creating profile');
+      toast.error("Problem creating profile");
     }
   };
 
@@ -81,16 +85,13 @@ export default class ProfileStore {
     try {
       await agent.Profiles.updateProfile(profile);
       runInAction(() => {
-        if (
-          profile.username !== this.rootStore.userStore.user!.username
-        ) {
+        if (profile.username !== this.rootStore.userStore.user!.username) {
           this.rootStore.userStore.user!.username = profile.username!;
         }
         this.profile = { ...this.profile!, ...profile };
       });
     } catch (error) {
-      toast.error('Problem updating profile');
+      toast.error("Problem updating profile");
     }
   };
-
-};
+}

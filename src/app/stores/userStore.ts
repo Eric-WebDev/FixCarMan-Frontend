@@ -15,13 +15,20 @@ export default class UserStore {
   @computed get isLoggedIn() {
     return !!this.user;
   }
- 
+  @computed get isGarage() {
+    if (this.rootStore.userStore.user?.userGarage !== "garage") {
+      return true;
+    } else {
+      return false;
+    }
+  }
   
   @action login = async (values: IUserFormValues) => {
     try {
       const user = await agent.User.login(values);
       runInAction(() => {
         this.user = user;
+        console.log(user)
       });
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();

@@ -25,7 +25,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
     loading,
     setActiveTab
   } = rootStore.profileStore;
-
+  const { isGarage } = rootStore.userStore;
   useEffect(() => {
     loadProfile(match.params.username);
   }, [loadProfile, match]);
@@ -40,7 +40,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
           isCurrentUser={isCurrentUser}
           loading={loading}
         />
-        <ProfileContent setActiveTab={setActiveTab}  profile={profile!}/>
+        <ProfileContent setActiveTab={setActiveTab}  isGarage={isGarage!}/>
       </Grid.Column>
     </Grid>
   );

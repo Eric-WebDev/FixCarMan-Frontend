@@ -24,14 +24,13 @@ import ReactContactForm from "react-mail-form";
 const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
   const rootStore = useContext(RootStoreContext);
   const { loading } = rootStore.adStore;
-  const { user, isLoggedIn } = rootStore.userStore;
+  const { user, isLoggedIn,isGarage } = rootStore.userStore;
   return (
     <Segment.Group>
       <Segment attached="top" style={{ padding: "0" }}>
         <Segment basic>
           <Item.Group>
             <Item>
-              
               <Item.Content>
                 <Header
                   size="huge"
@@ -62,7 +61,7 @@ const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
           >
             Manage Advert
           </Button>
-        ) : user?.UserGarage!=="garage" ? (
+        ) : isGarage ? (
           // <Button loading={loading} >
           //   Send private message
           // </Button>
@@ -70,7 +69,12 @@ const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
           <Segment inverted>
             <Form inverted>
               <Form.Group widths="equal">
-              <ReactContactForm to="test@email.com" contentsPlaceholder="Your Message" buttonText="Send Email" className="contactForm"/>
+                <ReactContactForm
+                  to="test@email.com"
+                  contentsPlaceholder="Your Message"
+                  buttonText="Send Email"
+                  className="contactForm"
+                />
               </Form.Group>
             </Form>
           </Segment>

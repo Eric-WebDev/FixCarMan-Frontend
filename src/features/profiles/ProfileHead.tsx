@@ -33,7 +33,7 @@ const ProfileHead: React.FC<IProps> = ({
                 src={profile.image || '/assets/user.png'}
               />
               <Item.Content verticalAlign='middle'>
-                <Header as='h1'>{profile.username}</Header>
+                <Header as='h1'>{profile.UserGarage}</Header>
               </Item.Content>
             </Item>
           </Item.Group>

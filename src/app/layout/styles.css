@@ -41,8 +41,8 @@ body {
     font-weight: normal;
   }
 .contactForm {
-  background-color:white; /* Green */
-  border: black;
+  background-color:white;
+  border-radius: 7px;
   color: white;
   padding: 26px 56px;
   text-align: center;
@@ -51,4 +51,17 @@ body {
   font-size: 21px;
   margin: 12px 12px;
   cursor: pointer;
+
+}
+.contactForm a{
+  margin-top: 12px;
+  background-color: #4CAF50; /* Green */
+  border-radius: 6px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
 }

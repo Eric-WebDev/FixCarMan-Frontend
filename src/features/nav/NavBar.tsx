@@ -14,7 +14,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
 
 const NavBar: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
-  const { user, logout } = rootStore.userStore;
+  const { user, logout, isGarage } = rootStore.userStore;
 
   return (
     <Menu stackable pointing size="large">
@@ -26,7 +26,8 @@ const NavBar: React.FC = () => {
         {user && <Menu.Item name="home" as={NavLink} exact to="/" />}
         {/* {user && (<Menu.Item name="garages" as={NavLink} to='/garages'/>)} */}
         {user && <Menu.Item name="Search Ad" as={NavLink} to="/adverts" />}
-        {user?.UserGarage == "garage" && (
+
+        {isGarage && (
           <Menu.Item>
             <Button
               inverted
@@ -50,7 +51,7 @@ const NavBar: React.FC = () => {
                   text="My profile"
                   icon="user"
                 />
-                {user?.UserGarage == "garage"  && (
+                {isGarage && (
                   <Dropdown.Item
                     as={Link}
                     to={`/vehicles/${user.username}`}

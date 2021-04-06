@@ -53,7 +53,7 @@ const RegisterForm = () => {
             options={typeProfile}
             name="UserGarage"
             placeholder="Profile type"
-            value={user?.UserGarage}
+            value={user?.userGarage}
           />
           {submitError && !dirtySinceLastSubmit && (
             <ErrorMessage error={submitError} />
