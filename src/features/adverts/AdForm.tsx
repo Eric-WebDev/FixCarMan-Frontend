@@ -21,7 +21,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 
 const validate = combineValidators({
   title: isRequired({ message: 'title is required' }),
-  carModel: isRequired('Car model'),
+  // carModel: isRequired('Car model'),
   description: composeValidators(
     isRequired('Description'),
     hasLengthGreaterThan(4)({
@@ -97,13 +97,13 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   value={ad.title}
                   component={TextInput}
                 />
-                   <Field
+                   {/* <Field
                 name='carModel'
                 placeholder='CarModel'
                 rows={3}
                 value={ad.carModel}
                 component={TextAreaInput}
-                />
+                /> */}
                 <Field
                   name='description'
                   placeholder='Description'

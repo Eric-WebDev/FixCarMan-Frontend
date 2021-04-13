@@ -1,17 +1,18 @@
-import React, { Fragment, useContext } from 'react';
-import { Menu, Header } from 'semantic-ui-react';
-import { Calendar } from 'react-widgets';
-import { observer } from 'mobx-react-lite';
-import { RootStoreContext } from '../../app/stores/rootStore';
+import React, { Fragment, useContext } from "react";
+import { Menu, Header, Dropdown, Segment, Divider } from "semantic-ui-react";
+import { Calendar } from "react-widgets";
+import { observer } from "mobx-react-lite";
+import { RootStoreContext } from "../../app/stores/rootStore";
 
 const AdvertFilters = () => {
   const rootStore = useContext(RootStoreContext);
   const { predicate, setPredicate } = rootStore.adStore;
   return (
     <Fragment>
-      <Menu vertical size={'large'} style={{ width: '100%', marginTop: 50 }}>
-        <Header icon={'filter'} attached color={'blue'} content={'Filters'} />
-        <Menu.Item
+      <Menu vertical size={"large"} style={{ width: "100%", marginTop: 50 }}>
+       
+          <Header icon={"filter"} attached color={"blue"} content={"Filters"} />
+          {/* <Menu.Item
           active={predicate.size === 0}
           onClick={() => setPredicate('all', 'true')}
           color={'blue'}
@@ -25,9 +26,30 @@ const AdvertFilters = () => {
           color={'blue'}
           name={'advertiser'}
           content={"My adverts"}
-        />
+        /> */}
+         <Segment>
+          <Dropdown
+            clearable
+            fluid
+            multiple
+            search
+            selection
+            // options={countryOptions}
+            placeholder="Select City"
+          />
+          <Divider section />
+          <Dropdown
+            clearable
+            fluid
+            multiple
+            search
+            selection
+            // options={countryOptions}
+            placeholder="Select Car Make"
+          />
+        </Segment>
       </Menu>
-     </Fragment>
+    </Fragment>
   );
 };
 

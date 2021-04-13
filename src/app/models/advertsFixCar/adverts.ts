@@ -7,6 +7,8 @@ export interface IAdvert {
     advertiserUsername?:string;
     advertiserEmail?:string ;
     carModel: string;
+    carMake: string;
+    registrationNumber:string;
     city: string;
     date: Date;
     description?: string;

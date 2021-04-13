@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
         {/* {user && (<Menu.Item name="garages" as={NavLink} to='/garages'/>)} */}
         {user && <Menu.Item name="Search Ad" as={NavLink} to="/adverts" />}
 
-        {isGarage && (
+        {user && isGarage && (
           <Menu.Item>
             <Button
               inverted
@@ -51,7 +51,7 @@ const NavBar: React.FC = () => {
                   text="My profile"
                   icon="user"
                 />
-                {isGarage && (
+                {user && isGarage && (
                   <Dropdown.Item
                     as={Link}
                     to={`/vehicles/${user.username}`}

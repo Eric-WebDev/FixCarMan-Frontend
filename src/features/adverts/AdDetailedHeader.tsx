@@ -24,7 +24,7 @@ import ReactContactForm from "react-mail-form";
 const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
   const rootStore = useContext(RootStoreContext);
   const { loading } = rootStore.adStore;
-  const { user, isLoggedIn,isGarage } = rootStore.userStore;
+  const { user, isLoggedIn, isGarage } = rootStore.userStore;
   return (
     <Segment.Group>
       <Segment attached="top" style={{ padding: "0" }}>
@@ -79,7 +79,7 @@ const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
             </Form>
           </Segment>
         ) : (
-          <Header centered>Contact provided only for verified users</Header>
+          <Header>Contact provided only for verified users</Header>
         )}
       </Segment>
     </Segment.Group>

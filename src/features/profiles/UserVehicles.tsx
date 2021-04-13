@@ -5,19 +5,17 @@ import {
   Grid,
   Header,
   Card,
-  Image,
   TabProps,
   Button,
   Divider,
   Icon,
   Item,
-  Label,
   Table,
 } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import { IVehicle } from "../../app/models/profiles/profile";
 import { Link, RouteComponentProps } from "react-router-dom";
-import VehicleForm from "./VehicleForm";
+
 const src = "/assets/car.png";
 interface RouteParams {
   id: string;
@@ -89,7 +87,7 @@ const UserVehicle: React.FC<IProps> = ({ match }) => {
             ) : userVehicles ? (
               <Button>Send private message</Button>
             ) : (
-              <Header centered>Contact provided only for verified users</Header>
+              <Header>Contact provided only for verified users</Header>
             )}
 
             {userVehicles.map((vehicle: IVehicle) => (

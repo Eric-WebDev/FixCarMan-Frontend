@@ -14,7 +14,10 @@ const AdDetailedInfo: React.FC<{ad: IAdvert}> = ({ad}) => {
             <Icon size='large' color='teal' name='car' />
           </Grid.Column>
           <Grid.Column width={15}>
-            <p>{ad.carModel}</p>
+            <p>{ad.carModel} {ad.carMake}</p>          
+          </Grid.Column>
+          <Grid.Column width={15}>
+          <p>{ad.registrationNumber}</p>
           </Grid.Column>
         </Grid>
       </Segment>

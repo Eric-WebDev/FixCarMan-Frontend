@@ -5,6 +5,7 @@ import AdList from "./AdList";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import AdItemItemPlaceholder from "./AdItemPlaceholder";
 import InfiniteScroll from "react-infinite-scroller";
+import AdFilters from "./AdFilters";
 
 const Dashboard: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
@@ -26,18 +27,15 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     loadAds();
   }, [loadAds]);
-  const [size, setSize] = useState('s');
+  const [size, setSize] = useState("s");
   const style = {
-      fontFamily: '"Nunito Sans", sans-serif',
-      marginTop: '24px',
+    fontFamily: '"Nunito Sans", sans-serif',
+    marginTop: "24px",
   };
 
- 
   return (
     <Grid>
-        
       <Grid.Column width={12}>
- 
         {loadingInitial && page === 0 ? (
           <AdItemItemPlaceholder />
         ) : (
@@ -51,11 +49,12 @@ const Dashboard: React.FC = () => {
           </InfiniteScroll>
         )}
       </Grid.Column>
-      <Grid.Column width={3}>
-        <Advertisement
+      <Grid.Column width={4}>
+        {/* <Advertisement
           unit="vertical rectangle"
           test="Advertisement placeholder"
-        />
+        /> */}
+        <AdFilters/>
       </Grid.Column>
       <Grid.Column width={10}>
         <Loader active={loadingNext} />
