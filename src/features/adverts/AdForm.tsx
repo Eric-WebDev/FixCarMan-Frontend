@@ -1,35 +1,49 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Segment, Form, Button, Grid } from 'semantic-ui-react';
-import { v4 as uuid } from 'uuid';
-import { observer } from 'mobx-react-lite';
-import { RouteComponentProps } from 'react-router';
-import { Form as FinalForm, Field } from 'react-final-form';
+import React, { useState, useContext, useEffect } from "react";
+import { Segment, Form, Button, Grid } from "semantic-ui-react";
+import { v4 as uuid } from "uuid";
+import { observer } from "mobx-react-lite";
+import { RouteComponentProps } from "react-router";
+import { Form as FinalForm, Field } from "react-final-form";
 
 import {
   combineValidators,
   isRequired,
   composeValidators,
-  hasLengthGreaterThan
-} from 'revalidate';
-import { AdvertFormValues } from '../../app/models/advertsFixCar/adverts';
-import { combineDateAndTime } from '../../app/Common/util/util';
-import TextInput from '../../app/Common/form/TextInput';
-import TextAreaInput from '../../app/Common/form/TextAreaInput';
-import DateInput from '../../app/Common/form/DateInput';
-import { RootStoreContext } from '../../app/stores/rootStore';
+  hasLengthGreaterThan,
+} from "revalidate";
+import { AdvertFormValues } from "../../app/models/advertsFixCar/adverts";
+import { combineDateAndTime } from "../../app/Common/util/util";
+import TextInput from "../../app/Common/form/TextInput";
+import TextAreaInput from "../../app/Common/form/TextAreaInput";
+import DateInput from "../../app/Common/form/DateInput";
+import { RootStoreContext } from "../../app/stores/rootStore";
 
-
+export const cityOptions = [
+  { key: "sligo", text: "Sligo", value: "sligo" },
+  { key: "tubbercurry", text: "Tubbercurry", value: "tubbercurry" },
+  { key: "balymote", text: "Tubbercurry", value: "tubbercurry" },
+  { key: "ballina", text: "Ballina", value: "ballina" },
+  { key: "donegal", text: "Donegal", value: "donegal" },
+];
+export const carMake = [
+  { key: "bmw", text: "BMW", value: "bmv" },
+  { key: "audi", text: "Audi", value: "audi" },
+  { key: "volvo", text: "Volvo", value: "volvo" },
+  { key: "mercedes", text: "Mercedes", value: "Merceded" },
+  { key: "peugot", text: "Peugot", value: "peugot" },
+  { key: "Renault", text: "Renault", value: "renault" },
+];
 const validate = combineValidators({
-  title: isRequired({ message: 'title is required' }),
+  title: isRequired({ message: "title is required" }),
   // carModel: isRequired('Car model'),
   description: composeValidators(
-    isRequired('Description'),
+    isRequired("Description"),
     hasLengthGreaterThan(4)({
-      message: 'Description needs to be at least 5 characters'
+      message: "Description needs to be at least 5 characters",
     })
   )(),
-  date: isRequired('Date'),
-  city: isRequired('City'),
+  date: isRequired("Date"),
+  city: isRequired("City"),
   //time: isRequired('Time')
   // advertiserName
   // email
@@ -42,15 +56,10 @@ interface DetailParams {
 
 const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
-  history
+  history,
 }) => {
   const rootStore = useContext(RootStoreContext);
-  const {
-    createAd,
-    editAd,
-    submitting,
-    loadAd
-  } = rootStore.adStore;
+  const { createAd, editAd, submitting, loadAd } = rootStore.adStore;
 
   const [ad, setAd] = useState(new AdvertFormValues());
   const [loading, setLoading] = useState(false);
@@ -59,7 +68,7 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
     if (match.params.id) {
       setLoading(true);
       loadAd(match.params.id)
-        .then(ad => {
+        .then((ad) => {
           setAd(new AdvertFormValues(ad));
         })
         .finally(() => setLoading(false));
@@ -67,14 +76,14 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
   }, [loadAd, match.params.id]);
 
   const handleFinalFormSubmit = (values: any) => {
-    const dateAndTime = combineDateAndTime(values.date,values.time);
+    const dateAndTime = combineDateAndTime(values.date, values.time);
     const { date, ...ad } = values;
     ad.date = dateAndTime;
     if (!ad.id) {
       let newAd = {
-       ...ad,
-        id: uuid()
-     };
+        ...ad,
+        id: uuid(),
+      };
       createAd(newAd);
     } else {
       editAd(ad);
@@ -83,7 +92,7 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
 
   return (
     <Grid>
-      <Grid.Column >
+      <Grid.Column>
         <Segment clearing>
           <FinalForm
             validate={validate}
@@ -92,12 +101,12 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
             render={({ handleSubmit, invalid, pristine }) => (
               <Form onSubmit={handleSubmit} loading={loading}>
                 <Field
-                  name='title'
-                  placeholder='Title'
+                  name="title"
+                  placeholder="Title"
                   value={ad.title}
                   component={TextInput}
                 />
-                   {/* <Field
+                {/* <Field
                 name='carModel'
                 placeholder='CarModel'
                 rows={3}
@@ -105,64 +114,63 @@ const AdForm: React.FC<RouteComponentProps<DetailParams>> = ({
                 component={TextAreaInput}
                 /> */}
                 <Field
-                  name='description'
-                  placeholder='Description'
+                  name="description"
+                  placeholder="Description"
                   rows={3}
                   value={ad.description}
                   component={TextAreaInput}
-                />               
+                />
                 <Field
                   component={TextInput}
-                  name='city'
-                  placeholder='City'
+                  name="city"
+                  placeholder="City"
                   value={ad.city}
                 />
-              {/* <Field
+                {/* <Field
                   name='advertiserName'
                   placeholder='AdvertiserName'
                   value={ad.advertiser?.advertUsername}
                   component={TextInput}
                 />  */}
-                  {/* <Field
+                {/* <Field
                   name='email'
                   placeholder='Email'
                   value={ad.advertiser?.email}
                   component={TextInput}
                 />  */}
-                  {/* <Field
+                {/* <Field
                   name='phoneNumber'
                   placeholder='PhoneNumber'
                   value={ad.advertiser?.phoneNumber}
                   component={TextInput}
                 /> */}
-                <Form.Group widths='equal'>
+                <Form.Group widths="equal">
                   <Field
                     component={DateInput}
-                    name='date'
+                    name="date"
                     date={true}
-                    placeholder='Date'
+                    placeholder="Date"
                     value={ad.date}
                   />
-
                 </Form.Group>
                 <Button
                   loading={submitting}
                   disabled={loading || invalid || pristine}
-                  floated='right'
+                  floated="right"
                   positive
-                  type='submit'
-                  content='Submit'
+                  type="submit"
+                  content="Submit"
                 />
                 <Button
                   onClick={
                     ad.id
                       ? () => history.push(`/adverts/${ad.id}`)
-                      : () => history.push('/adverts')
+                      : () => history.push("/adverts")
                   }
                   disabled={loading}
-                  floated='right'
-                  type='button'
-                  content='Cancel'
+                  floated="right"
+                  type="button"
+                  content="Cancel"
                 />
               </Form>
             )}

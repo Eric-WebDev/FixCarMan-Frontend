@@ -1,12 +1,11 @@
-import React from 'react';
-import { Form as FinalForm, Field } from 'react-final-form';
-import { observer } from 'mobx-react-lite';
-import { combineValidators, isRequired } from 'revalidate';
-import { Form, Button } from 'semantic-ui-react';
-import TextInput from '../../app/Common/form/TextInput';
-import TextAreaInput from '../../app/Common/form/TextAreaInput';
-import { IProfile } from '../../app/models/profiles/profile';
-
+import React from "react";
+import { Form as FinalForm, Field } from "react-final-form";
+import { observer } from "mobx-react-lite";
+import { combineValidators } from "revalidate";
+import { Form, Button } from "semantic-ui-react";
+import TextInput from "../../app/Common/form/TextInput";
+import TextAreaInput from "../../app/Common/form/TextAreaInput";
+import { IProfile } from "../../app/models/profiles/profile";
 
 const validate = combineValidators({
   //username: isRequired('username')
@@ -26,48 +25,48 @@ const ProfileEditForm: React.FC<IProps> = ({ updateProfile, profile }) => {
       render={({ handleSubmit, invalid, pristine, submitting }) => (
         <Form onSubmit={handleSubmit} error>
           <Field
-            name='firstName'
+            name="firstName"
             component={TextInput}
-            placeholder='First Name'
+            placeholder="First Name"
             value={profile!.firstName}
           />
           <Field
-            name='lastName'
+            name="lastName"
             component={TextInput}
-            placeholder='Second Name'
+            placeholder="Second Name"
             value={profile!.lastName}
           />
           <Field
-            name='street'
+            name="street"
             component={TextAreaInput}
             rows={3}
-            placeholder='Street'
+            placeholder="Street"
             value={profile!.street}
           />
           <Field
-            name='city'
+            name="city"
             component={TextInput}
-            placeholder='City'
+            placeholder="City"
             value={profile!.city}
           />
           <Field
-            name='county'
+            name="county"
             component={TextInput}
-            placeholder='County'
+            placeholder="County"
             value={profile!.county}
           />
           <Field
-            name='profileDescription'
+            name="profileDescription"
             component={TextInput}
-            placeholder='Description'
+            placeholder="Description"
             value={profile!.profileDescription}
           />
-          <Button 
+          <Button
             loading={submitting}
-            floated='right'
+            floated="right"
             disabled={invalid || pristine}
             positive
-            content='Update profile'
+            content="Update profile"
           />
         </Form>
       )}

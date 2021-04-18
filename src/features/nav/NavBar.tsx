@@ -1,15 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {
-  Button,
-  Container,
-  Dropdown,
-  Header,
-  Menu,
-  MenuItem,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Container, Dropdown, Menu } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
 
 const NavBar: React.FC = () => {

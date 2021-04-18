@@ -1,32 +1,11 @@
 import React, { Fragment, useContext } from "react";
-import {
-  Menu,
-  Header,
-  Dropdown,
-  Segment,
-  Divider,
-  Button,
-} from "semantic-ui-react";
+import { Header, Dropdown, Segment, Divider } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { RootStoreContext } from "../../app/stores/rootStore";
-export const cityOptions = [
-  { key: "sligo", text: "Sligo", value: "sligo" },
-  { key: "tubbercurry", text: "Tubbercurry", value: "tubbercurry" },
-  { key: "balymote", text: "Tubbercurry", value: "tubbercurry" },
-  { key: "ballina", text: "Ballina", value: "ballina" },
-  { key: "donegal", text: "Donegal", value: "donegal" },
-];
-export const carMake = [
-  { key: "bmw", text: "BMW", value: "bmv" },
-  { key: "audi", text: "Audi", value: "audi" },
-  { key: "volvo", text: "Volvo", value: "volvo" },
-  { key: "mercedes", text: "Mercedes", value: "Merceded" },
-  { key: "peugot", text: "Peugot", value: "peugot" },
-  { key: "Renault", text: "Renault", value: "renault" },
-];
+
 const AdvertFilters = () => {
   const rootStore = useContext(RootStoreContext);
-  const { predicate, setPredicate } = rootStore.adStore;
+  const { setPredicate } = rootStore.adStore;
   return (
     <Fragment>
       <Header

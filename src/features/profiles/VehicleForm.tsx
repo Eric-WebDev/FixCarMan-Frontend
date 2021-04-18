@@ -1,15 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Segment, Form, Button, Grid } from "semantic-ui-react";
-import { v4 as uuid } from "uuid";
 import { observer } from "mobx-react-lite";
-import { RouteComponentProps } from "react-router";
 import { Form as FinalForm, Field } from "react-final-form";
-
 import {
   combineValidators,
-  isRequired,
-  composeValidators,
-  hasLengthGreaterThan,
+  isRequired
 } from "revalidate";
 import TextInput from "../../app/Common/form/TextInput";
 import TextAreaInput from "../../app/Common/form/TextAreaInput";
@@ -18,7 +13,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
 import { configure } from "mobx";
 configure({
   enforceActions: "never",
-})
+});
 const validate = combineValidators({
   //   registration: isRequired({ message: 'car registration is required' }),
   carModel: isRequired("Car model"),
@@ -29,16 +24,12 @@ const validate = combineValidators({
   //     })
   //   )(),
   carMake: isRequired("car Make"),
-  vin: isRequired('Vin is required'),
+  vin: isRequired("Vin is required"),
   //time: isRequired('Time')
   // advertiserName
   // email
   // phoneNumber
 });
-
-// interface DetailParams {
-//   id: string;
-// }
 
 const VehicleForm = () => {
   const rootStore = useContext(RootStoreContext);
@@ -46,11 +37,11 @@ const VehicleForm = () => {
     createVehicle,
     editVehicle,
     submitting,
-    vehicle
+    vehicle,
   } = rootStore.vehicleStore;
 
-  const handleFinalFormSubmit = (values: any) => { 
-    if (!values.id) {      
+  const handleFinalFormSubmit = (values: any) => {
+    if (!values.id) {
       createVehicle(values);
     } else {
       editVehicle(values);
@@ -61,9 +52,8 @@ const VehicleForm = () => {
       <Grid.Column>
         <Segment clearing>
           <FinalForm
-          initialValues={vehicle}  
+            initialValues={vehicle}
             validate={validate}
-                     
             onSubmit={handleFinalFormSubmit}
             render={({ handleSubmit, invalid, pristine }) => (
               <Form onSubmit={handleSubmit}>
@@ -158,7 +148,6 @@ const VehicleForm = () => {
                   positive
                   type="submit"
                   content="Submit"
-                
                 />
                 {/* <Button
                   onClick={

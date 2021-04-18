@@ -1,9 +1,8 @@
 import { RootStore } from "./rootStore";
-import { observable, action, runInAction, computed, reaction } from "mobx";
+import { observable, action, runInAction, computed} from "mobx";
 import agent from "../api/agent";
 import { toast } from "react-toastify";
 import {
-  IPhoto,
   IProfile,
   IUserAdvert,
   IVehicle,

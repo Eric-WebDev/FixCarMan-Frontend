@@ -3,10 +3,14 @@ import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
 import { IAdvert, IAdvertsEnvelope } from "../models/advertsFixCar/adverts";
 import { IUser, IUserFormValues } from "../models/users/user";
-import { IProfile, IUserAdvert, IVehicle, IVehicleFormValues } from "../models/profiles/profile";
+import {
+  IProfile,
+  IVehicle,
+  IVehicleFormValues,
+} from "../models/profiles/profile";
 let history = createBrowserHistory();
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.request.use(
   (config) => {
@@ -68,7 +72,8 @@ const requests = {
 };
 
 const Adverts = {
-  list: (predicateurl: string): Promise<IAdvertsEnvelope> => requests.get(`/adverts?predicate=${predicateurl}`),
+  list: (predicateurl: string): Promise<IAdvertsEnvelope> =>
+    requests.get(`/adverts?predicate=${predicateurl}`),
   details: (id: string) => requests.get(`/adverts/${id}`),
   create: (advert: IAdvert) => requests.post("/adverts", advert),
   update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
@@ -100,10 +105,11 @@ const Vehicles = {
   getVehicle: (id: string, predicate: string) =>
     requests.get(`/vehicles/${id}/?predicate=${predicate}`),
   create: (vehicle: IVehicleFormValues) => requests.post("/vehicles", vehicle),
-  update: (vehicle: IVehicleFormValues) => requests.put(`/vehicles/${vehicle.id}`, vehicle),
-  delete: (vehicle: IVehicle) => requests.del(`/vehicles/${vehicle.id}`)
+  update: (vehicle: IVehicleFormValues) =>
+    requests.put(`/vehicles/${vehicle.id}`, vehicle),
+  delete: (vehicle: IVehicle) => requests.del(`/vehicles/${vehicle.id}`),
 };
-
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   Adverts,
   User,

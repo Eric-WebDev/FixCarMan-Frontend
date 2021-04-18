@@ -5,9 +5,7 @@ import {
   Grid,
   Header,
   Card,
-  Image,
   TabProps,
-  Button,
   Divider,
   Icon,
 } from "semantic-ui-react";
@@ -66,7 +64,7 @@ const ProfileEvents = () => {
                 Fixed Cars
               </Header>
             )}
-             {profile?.UserGarage == "garage" && (
+            {profile?.UserGarage === "garage" && (
               <Header>
                 <Icon name="adversal" />
                 My Adverts

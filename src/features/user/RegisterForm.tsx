@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Form as FinalForm, Field } from "react-final-form";
-import { Form, Button, Header, Radio } from "semantic-ui-react";
+import { Form, Button, Header } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import { FORM_ERROR } from "final-form";
 import { combineValidators, isRequired } from "revalidate";
@@ -21,7 +21,6 @@ const validate = combineValidators({
 const RegisterForm = () => {
   const rootStore = useContext(RootStoreContext);
   const { register, user } = rootStore.userStore;
-  const [garage, setGarage] = useState(true);
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>

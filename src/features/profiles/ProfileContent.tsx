@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Tab } from "semantic-ui-react";
 import NotFound from "../../app/layout/NotFound";
 import ProfileAdverts from "./ProfileAdverts";

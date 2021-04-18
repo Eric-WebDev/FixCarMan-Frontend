@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Segment, Item, Header, Button, Image, Form } from "semantic-ui-react";
+import { Segment, Item, Header, Button, Form } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
@@ -8,22 +8,8 @@ import { RootStoreContext } from "../../app/stores/rootStore";
 import AdDetailedInfo from "./AdDetailedInfo";
 import ReactContactForm from "react-mail-form";
 
-// const adImageStyle = {
-//   filter: 'brightness(30%)'
-// };
-
-// const adImageTextStyle = {
-//   position: 'absolute',
-//   bottom: '5%',
-//   left: '5%',
-//   width: '100%',
-//   height: 'auto',
-//   color: 'white'
-// };
-
 const AdDetailedHeader: React.FC<{ ad: IAdvert }> = ({ ad }) => {
   const rootStore = useContext(RootStoreContext);
-  const { loading } = rootStore.adStore;
   const { user, isLoggedIn, isGarage } = rootStore.userStore;
   return (
     <Segment.Group>

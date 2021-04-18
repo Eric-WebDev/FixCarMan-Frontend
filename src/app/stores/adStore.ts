@@ -6,7 +6,7 @@ import {
   reaction,
   toJS,
 } from "mobx";
-import { createContext, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
 import agent from "../api/agent";
 import { history } from "../..";
 import { toast } from "react-toastify";
@@ -28,8 +28,8 @@ export default class AdStore {
       }
     );
   }
-  @action setPredicate = (predicate: string) => {   
-     if (predicate) {
+  @action setPredicate = (predicate: string) => {
+    if (predicate) {
       this.predicate = predicate;
     }
   };
@@ -44,7 +44,6 @@ export default class AdStore {
   @observable page = 0;
   @observable predicate = "";
 
- 
   // @computed get axiosParams() {
   //   const params = new URLSearchParams();
   //   params.append('limit', String(LIMIT));
@@ -85,8 +84,7 @@ export default class AdStore {
     );
   }
 
-  @action loadAds = async (predicate?: string ) => {
-    
+  @action loadAds = async (predicate?: string) => {
     this.loadingInitial = true;
     try {
       const adsEnvelope = await agent.Adverts.list(predicate!);

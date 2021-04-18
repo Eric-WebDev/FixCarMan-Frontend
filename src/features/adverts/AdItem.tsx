@@ -1,5 +1,5 @@
 import React from "react";
-import { Item, Button, Segment, Icon, Label } from "semantic-ui-react";
+import { Item, Button, Segment, Icon } from "semantic-ui-react";
 import { format } from "date-fns";
 import { IAdvert } from "../../app/models/advertsFixCar/adverts";
 import { Link } from "react-router-dom";
@@ -17,7 +17,6 @@ const AdItem: React.FC<{ ad: IAdvert }> = ({ ad }) => {
               <Item.Meta>
                 <Icon name="car" /> {ad?.carModel}
               </Item.Meta>
-
               {/* <Item.Description>{ad?.description}</Item.Description> */}
               <Button
                 as={Link}

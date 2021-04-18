@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, Fragment } from "react";
+import React, { useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import {
   Tab,
@@ -52,7 +52,7 @@ const UserVehicle: React.FC<IProps> = ({ match }) => {
     }
     loadUserVehicles(match.params.id, predicate);
   };
-  interface IProps extends RouteComponentProps<RouteParams> {}
+  // interface IProps extends RouteComponentProps<RouteParams> {}
   const panes = [{ menuItem: "My car", pane: { key: "vehicles" } }];
 
   return (

@@ -1,13 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
-import { RouteComponentProps } from 'react-router';
-import { RootStoreContext } from '../../app/stores/rootStore';
-import { observer } from 'mobx-react-lite';
-import LoadingComponent from '../../app/layout/Loadding';
-import ProfileContent from './ProfileContent';
-import ProfileHeader from './ProfileHeader';
-import ProfileHead from './ProfileHead';
-
+import React, { useContext, useEffect } from "react";
+import { Grid } from "semantic-ui-react";
+import { RouteComponentProps } from "react-router";
+import { RootStoreContext } from "../../app/stores/rootStore";
+import { observer } from "mobx-react-lite";
+import LoadingComponent from "../../app/layout/Loadding";
+import ProfileContent from "./ProfileContent";
+import ProfileHead from "./ProfileHead";
 
 interface RouteParams {
   username: string;
@@ -23,14 +21,14 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
     loadProfile,
     isCurrentUser,
     loading,
-    setActiveTab
+    setActiveTab,
   } = rootStore.profileStore;
   const { isGarage } = rootStore.userStore;
   useEffect(() => {
     loadProfile(match.params.username);
   }, [loadProfile, match]);
 
-  if (loadingProfile) return <LoadingComponent content='Loading profile...' />;
+  if (loadingProfile) return <LoadingComponent content="Loading profile..." />;
 
   return (
     <Grid>
@@ -40,7 +38,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
           isCurrentUser={isCurrentUser}
           loading={loading}
         />
-        <ProfileContent setActiveTab={setActiveTab}  isGarage={isGarage!}/>
+        <ProfileContent setActiveTab={setActiveTab} isGarage={isGarage!} />
       </Grid.Column>
     </Grid>
   );
