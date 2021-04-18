@@ -24,7 +24,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        CI = npm run build --if-present
+        npm run build --if-present
         npm run test --if-present
 
     - name: Upload artifact for deployment job
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -51,6 +51,6 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'fixcarman'
-        slot-name: 'production'
+        slot-name: 'development'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a362e73edc9840e7964cadc29721fc36 }}
         package: .
