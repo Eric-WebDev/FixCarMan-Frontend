@@ -20,14 +20,20 @@ export default class AdStore {
     this.rootStore = rootStore;
 
     reaction(
-      () => this.predicate.keys(),
+      () => this.predicate,
       () => {
         this.page = 0;
         this.adRegistry.clear();
-        this.loadAds();
+        this.loadAds(this.predicate);
       }
     );
   }
+  @action setPredicate = (predicate: string) => {   
+     if (predicate) {
+      this.predicate = predicate;
+    }
+  };
+
   @observable adRegistry = new Map();
   @observable ad: IAdvert | null = null;
   @observable loadingInitial = false;
@@ -36,15 +42,9 @@ export default class AdStore {
   @observable loading = false;
   @observable adCount = 0;
   @observable page = 0;
-  @observable predicate = new Map();
+  @observable predicate = "";
 
-  @action setPredicate = (predicate: string, value: string | Date) => {
-    this.predicate.clear();
-    if (predicate !== "all") {
-      this.predicate.set(predicate, value);
-    }
-  };
-
+ 
   // @computed get axiosParams() {
   //   const params = new URLSearchParams();
   //   params.append('limit', String(LIMIT));
@@ -85,10 +85,11 @@ export default class AdStore {
     );
   }
 
-  @action loadAds = async () => {
+  @action loadAds = async (predicate?: string ) => {
+    
     this.loadingInitial = true;
     try {
-      const adsEnvelope = await agent.Adverts.list();
+      const adsEnvelope = await agent.Adverts.list(predicate!);
       const { adverts, advertCount } = adsEnvelope;
       runInAction("loading ads", () => {
         adverts.forEach((ad) => {

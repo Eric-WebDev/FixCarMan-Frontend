@@ -68,7 +68,7 @@ const requests = {
 };
 
 const Adverts = {
-  list: (): Promise<IAdvertsEnvelope> => requests.get("/adverts"),
+  list: (predicateurl: string): Promise<IAdvertsEnvelope> => requests.get(`/adverts?predicate=${predicateurl}`),
   details: (id: string) => requests.get(`/adverts/${id}`),
   create: (advert: IAdvert) => requests.post("/adverts", advert),
   update: (advert: IAdvert) => requests.put(`/adverts/${advert.id}`, advert),
